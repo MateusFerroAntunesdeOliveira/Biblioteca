@@ -1,17 +1,21 @@
 package Principal;
 
-import Item.Biblioteca;
+// import Item.Biblioteca;
+// import Item.Disponibilidade;
+// import Item.Item;
+// import Item.Livro;
 
 public class Principal {
 	
-	// não haverá variáveis 'globais' static na main 
-	
 	public static void main(String[] args) {
 	    
-		// A Biblioteca é criada usando seu construtor
-		// Exemplo:
-		Biblioteca bib = new Biblioteca("Biblioteca Pessoal");
+		// -> dummy data Biblioteca
+		// final Biblioteca bib1 = new Biblioteca("Biblioteca Pessoal");
+
+		// -> dummy datas Item
+		// final Item livro1 = new Livro(123, "tituloLivro1", Disponibilidade.DISPONIVEL);
 		
+		// -> Menu
 		/*
 	     *  0 - sair
 	     *  1 - cadastrar item
@@ -19,7 +23,7 @@ public class Principal {
 	     *  3 - emprestar
 	     *  4 - devolver
 	     *  5 - listar emprestimos atuais
-	     *  6 - listar histórico de empréstimos
+	     *  6 - listar histï¿½rico de emprï¿½stimos
 	     *  7 - listar biblioteca
 	     */
 			
