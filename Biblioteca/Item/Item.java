@@ -53,6 +53,16 @@ public abstract class Item {
 		this.dispItem = dispItem;
 	}
 
+	// -> EmprestarItem
+	public void emprestar() {
+		this.dispItem = Disponibilidade.EMPRESTADO;
+	}
+	
+	// -> DevolverItem
+	public void devolver() {
+		this.dispItem = Disponibilidade.DISPONIVEL;
+	}
+
 	// -> toString
 	@Override
 	public String toString() {
