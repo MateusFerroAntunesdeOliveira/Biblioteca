@@ -11,16 +11,19 @@ public class FitaK7 extends Item {
         this.autorFita = autorFita;
         this.numMusicaFita = numMusicaFita;
     }
+
     public FitaK7(int idItem, String tituloItem, String autorFita, int numMusicaFita) {
         super(idItem, tituloItem);
         this.autorFita = autorFita;
         this.numMusicaFita = numMusicaFita;
     }
+
     public FitaK7(int idItem, Disponibilidade dispItem, String autorFita, int numMusicaFita) {
         super(idItem, dispItem);
         this.autorFita = autorFita;
         this.numMusicaFita = numMusicaFita;
     }
+    
     public FitaK7(int idItem, String tituloItem, Disponibilidade dispItem, String autorFita, int numMusicaFita) {
         super(idItem, tituloItem, dispItem);
         this.autorFita = autorFita;

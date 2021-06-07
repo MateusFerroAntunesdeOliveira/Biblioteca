@@ -31,6 +31,7 @@ public class Principal {
 			System.out.println(" 5 - Listar empréstimos atuais");
 			System.out.println(" 6 - Listar histórico de empréstimos");
 			System.out.println(" 7 - Listar biblioteca");
+			System.out.println(" 8 - Alterar estado manualmente");
 			System.out.println(" 0 - Sair do Programa");
 			System.out.print(" >> ");
 			escolhaMenu = teclado.nextInt();
@@ -60,6 +61,9 @@ public class Principal {
 				case 7:
 					System.out.println("Escolha número 7");
 					// TODO fazer a listagem por aqui
+					break;
+				case 8:
+					alterarEstado();
 					break;
 				case 0:
 					System.exit(0);
@@ -98,5 +102,12 @@ public class Principal {
 		// Scanner teclado = new Scanner(System.in);
 
 		System.out.println("Escolha número 4");
+	}
+
+	private static void alterarEstado() {
+		// -> Variables
+		// Scanner teclado = new Scanner(System.in);
+
+		System.out.println("Escolha número 8");
 	}
 }
