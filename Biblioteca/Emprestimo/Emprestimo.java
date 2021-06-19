@@ -2,6 +2,7 @@ package Emprestimo;
 
 import java.time.LocalDateTime;
 // import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter;
 
 import Amigo.Amigo;
 import Item.Item;
@@ -56,7 +57,8 @@ public class Emprestimo {
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, Item item, Amigo amigo) {
+	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, Item item,
+			Amigo amigo) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
 		this.dataEmprestimo = dataEmprestimo;
@@ -81,7 +83,7 @@ public class Emprestimo {
 	public LocalDateTime getDataDevolucao() {
 		return dataDevolucao;
 	}
-	
+
 	public Item getItem() {
 		return item;
 	}
@@ -118,6 +120,8 @@ public class Emprestimo {
 	// -> toString
 	@Override
 	public String toString() {
-		return amigo + "\n" + item + "Data do empréstimo: " + dataEmprestimo + "\nData da devolução: " + dataDevolucao;
+		return amigo + "\n" + item + "Data do empréstimo: "
+				+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nData da devolução: "
+				+ dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
 	}
 }

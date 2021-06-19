@@ -1,6 +1,6 @@
 package Principal;
 
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import Item.Biblioteca;
@@ -54,8 +54,6 @@ public class Principal {
 		// -> dummy data ListaEmprestimos
 		final ListaEmprestimos emprestimos = new ListaEmprestimos();
 
-		// -> dummy data Emprestimos
-
 		// -> Menu
 		do {
 			System.out.println("\n=-=-= Menu de opcoes =-=-=\n");
@@ -104,7 +102,7 @@ public class Principal {
 				case 0:
 					System.exit(0);
 				default:
-					System.out.println("Escolha inválida, tente novamente");
+					System.out.println("Escolha inválida, tente novamente!");
 					break;
 			}
 		} while (escolhaMenu != 0);
@@ -155,7 +153,6 @@ public class Principal {
 				bib1.addItem(obj1);
 				break;
 			case 2:
-				// dvd add na bib
 				DVD obj2;
 				obj2 = new DVD(bib1.getAlItem().size(), "", Disponibilidade.DISPONIVEL);
 
@@ -206,9 +203,9 @@ public class Principal {
 				bib1.addItem(obj3);
 				break;
 			default:
+				System.out.println("Digite um valor correto!");
 				break;
 		}
-
 	}
 
 	private static void cadastrarAmigo(ListaAmigos lista) {
@@ -221,15 +218,11 @@ public class Principal {
 		System.out.println();
 		System.out.println("Qual o nome do seu abiguinho: ");
 		System.out.print(">> ");
-		nomeAmigo = teclado.next();
+		nomeAmigo = teclado.nextLine();
 		System.out.println();
 		amigo.setNomeAmigo(nomeAmigo);
 
 		lista.addAmigo(amigo);
-
-		// for (int i = 0; i < lista.getAlAmigos().size(); i++) {
-		// System.out.println(lista.getAlAmigos().get(i));
-		// }
 	}
 
 	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
@@ -237,9 +230,8 @@ public class Principal {
 		Scanner teclado = new Scanner(System.in);
 		int amigoEmprest, escolhaItemEmprest;
 		Emprestimo emprestimo;
-		Amigo amigo;
 
-		System.out.println("Qual o amigo que está emprestando: ");
+		System.out.println("Para quem você está emprestando: ");
 		System.out.println();
 		for (int i = 0; i < lista.getAlAmigos().size(); i++) {
 			System.out.println("(" + i + ") " + lista.getAlAmigos().get(i));
@@ -259,6 +251,7 @@ public class Principal {
 
 		for (Item item : bib1.getAlItem()) {
 			if (item.getIdItem() == escolhaItemEmprest) {
+				//TODO DAR PRO USUARIO A CHANCE DE ESCOLHER A DATA DO EMPRESTIMO/DEVOLUCAO
 				emprestimo = new Emprestimo(amigoEmprest, item.getIdItem(), item, lista.getAlAmigos().get(amigoEmprest));
 
 				if (item.getDispItem() == Disponibilidade.DISPONIVEL) {
