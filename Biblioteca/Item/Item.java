@@ -4,7 +4,7 @@ public abstract class Item {
 
 	private int IdItem;
 	private String tituloItem;
-	private Disponibilidade dispItem;
+	Disponibilidade dispItem;
 
 	// -> Constructors
 	public Item(int idItem) {
@@ -29,20 +29,20 @@ public abstract class Item {
 
 	// -> Getters
 	public int getIdItem() {
-		return IdItem;
+		return this.IdItem;
 	}
 	
 	public String getTituloItem() {
-		return tituloItem;
+		return this.tituloItem;
 	}
 	
 	public Disponibilidade getDispItem() {
-		return dispItem;
+		return this.dispItem;
 	}
 	
 	// -> Setters
 	public void setIdItem(int idItem) {
-		IdItem = idItem;
+		this.IdItem = idItem;
 	}
 	
 	public void setTituloItem(String tituloItem) {

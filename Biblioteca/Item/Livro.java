@@ -24,6 +24,7 @@ public class Livro extends Item {
 		super(idItem, tituloItem, dispItem);
 		this.autorLivro = autorLivro;
 		this.totPagLivro = totPagLivro;
+		this.dispItem = Disponibilidade.DISPONIVEL;
 	}
 
 	// -> Getters
@@ -47,6 +48,6 @@ public class Livro extends Item {
 	// -> toString
 	@Override
 	public String toString() {
-		return "Livro [autorLivro=" + autorLivro + ", totPagLivro=" + totPagLivro + "]";
+		return "Livro" + " - " + "Autor: " + autorLivro + " - " + totPagLivro + " páginas " + "\nDisponibilidade atual: " + dispItem + "\n";
 	}
 }

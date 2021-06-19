@@ -40,6 +40,15 @@ public class Emprestimo {
 		this.dataDevolucao = LocalDateTime.now();
 	}
 
+	public Emprestimo(int idAmigo, int idItem, Item item, Amigo amigo) {
+		this.idAmigo = idAmigo;
+		this.idItem = idItem;
+		this.dataEmprestimo = LocalDateTime.of(2021, 1, 1, 12, 0);
+		this.dataDevolucao = LocalDateTime.of(2021, 1, 2, 12, 0);
+		this.item = item;
+		this.amigo = amigo;
+	}
+
 	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
@@ -109,7 +118,6 @@ public class Emprestimo {
 	// -> toString
 	@Override
 	public String toString() {
-		return "Emprestimo [dataDevolucao=" + dataDevolucao + ", dataEmprestimo=" + dataEmprestimo + ", idAmigo="
-				+ idAmigo + ", idItem=" + idItem + "]";
+		return amigo + "\n" + item + "Data do empréstimo: " + dataEmprestimo + "\nData da devolução: " + dataDevolucao;
 	}
 }

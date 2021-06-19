@@ -12,6 +12,10 @@ public class FitaK7 extends Item {
         this.numMusicaFita = numMusicaFita;
     }
 
+    public FitaK7(int idItem, String tituloItem, Disponibilidade dispItem) {
+        super(idItem, tituloItem, dispItem);
+    }
+
     public FitaK7(int idItem, String tituloItem, String autorFita, int numMusicaFita) {
         super(idItem, tituloItem);
         this.autorFita = autorFita;
@@ -28,6 +32,7 @@ public class FitaK7 extends Item {
         super(idItem, tituloItem, dispItem);
         this.autorFita = autorFita;
         this.numMusicaFita = numMusicaFita;
+        this.dispItem = Disponibilidade.DISPONIVEL;
     }
 
     // -> Getters
@@ -51,6 +56,6 @@ public class FitaK7 extends Item {
     // -> toString
     @Override
     public String toString() {
-        return "FitaK7 [autorFita=" + autorFita + ", numMusicaFita=" + numMusicaFita + "]";
+        return "FITAK7" + " - " + "Autor: " + autorFita + " - " + numMusicaFita  + " músicas " + "\nDisponibilidade atual: " + dispItem + "\n";
     }
 }

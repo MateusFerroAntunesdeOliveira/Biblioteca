@@ -6,6 +6,10 @@ public class ListaEmprestimos {
 	private ArrayList<Emprestimo> alEmprestimos;
 
 	// -> Constructors
+	public ListaEmprestimos() {
+		this.alEmprestimos = new ArrayList<Emprestimo>();
+	}
+	
 	public ListaEmprestimos(ArrayList<Emprestimo> alEmprestimos) {
 		this.alEmprestimos = alEmprestimos;
 	}
@@ -18,6 +22,10 @@ public class ListaEmprestimos {
 	// -> Setters
 	public void setAlEmprestimos(ArrayList<Emprestimo> alEmprestimos) {
 		this.alEmprestimos = alEmprestimos;
+	}
+
+	public void addEmprestimo(Emprestimo novoEmprestimo) {
+		this.alEmprestimos.add(novoEmprestimo);
 	}
 
 	// -> toString

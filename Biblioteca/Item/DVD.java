@@ -10,6 +10,10 @@ public class DVD extends Item {
 		super(idItem);
 	}
 
+	public DVD(int idItem, String tituloItem, Disponibilidade dispItem) {
+		super(idItem, tituloItem, dispItem);
+	}
+
 	public DVD(int idItem, String autorDisco, int numMusicaDvd) {
 		super(idItem);
 		this.autorDisco = autorDisco;
@@ -32,6 +36,7 @@ public class DVD extends Item {
 		super(idItem, tituloItem, dispItem);
 		this.autorDisco = autorDisco;
 		this.numMusicaDvd = numMusicaDvd;
+		this.dispItem = Disponibilidade.DISPONIVEL;
 	}
 
 	// -> Getters
@@ -54,7 +59,7 @@ public class DVD extends Item {
 
 	// -> toString
 	@Override
-	public String toString() {
-		return "DVD [autorDisco=" + autorDisco + ", numMusicaDvd=" + numMusicaDvd + "]";
+	public String toString() {	
+		return "DVD" + " - " + "Autor: " + autorDisco + " - " + numMusicaDvd + " músicas " + "\nDisponibilidade atual: " + dispItem + "\n";
 	}
 }
