@@ -1,10 +1,10 @@
 package Item;
 
-public abstract class Item {
+public abstract class Item{
 
 	private int IdItem;
 	private String tituloItem;
-	private Disponibilidade dispItem;
+	Disponibilidade dispItem;
 
 	// -> Constructors
 	public Item(int idItem) {
@@ -29,20 +29,20 @@ public abstract class Item {
 
 	// -> Getters
 	public int getIdItem() {
-		return IdItem;
+		return this.IdItem;
 	}
 	
 	public String getTituloItem() {
-		return tituloItem;
+		return this.tituloItem;
 	}
 	
 	public Disponibilidade getDispItem() {
-		return dispItem;
+		return this.dispItem;
 	}
 	
 	// -> Setters
 	public void setIdItem(int idItem) {
-		IdItem = idItem;
+		this.IdItem = idItem;
 	}
 	
 	public void setTituloItem(String tituloItem) {
@@ -61,6 +61,21 @@ public abstract class Item {
 	// -> DevolverItem
 	public void devolver() {
 		this.dispItem = Disponibilidade.DISPONIVEL;
+	}
+
+	// -> ConsultaLocal
+	public void consultaLocal() {
+		this.dispItem = Disponibilidade.CONSULTALOCAL;
+	}
+
+	// -> Danificado
+	public void Danificado() {
+		this.dispItem = Disponibilidade.DANIFICADO;
+	}
+
+	// -> Extraviado
+	public void Extraviado() {
+		this.dispItem = Disponibilidade.EXTRAVIADO;
 	}
 
 	// -> toString

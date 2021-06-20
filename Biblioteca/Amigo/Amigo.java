@@ -36,6 +36,6 @@ public class Amigo {
 	// -> toString
 	@Override
 	public String toString() {
-		return "Amigo [idAmigo=" + idAmigo + ", nomeAmigo=" + nomeAmigo + "]";
+		return "Amigo: " + nomeAmigo;
 	}
 }

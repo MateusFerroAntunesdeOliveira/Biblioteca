@@ -1,4 +1,5 @@
 package Emprestimo;
+
 import java.util.ArrayList;
 
 public class ListaEmprestimos {
@@ -6,6 +7,10 @@ public class ListaEmprestimos {
 	private ArrayList<Emprestimo> alEmprestimos;
 
 	// -> Constructors
+	public ListaEmprestimos() {
+		this.alEmprestimos = new ArrayList<Emprestimo>();
+	}
+
 	public ListaEmprestimos(ArrayList<Emprestimo> alEmprestimos) {
 		this.alEmprestimos = alEmprestimos;
 	}
@@ -20,9 +25,14 @@ public class ListaEmprestimos {
 		this.alEmprestimos = alEmprestimos;
 	}
 
+	// -> AddEmprestimo
+	public void addEmprestimo(Emprestimo novoEmprestimo) {
+		this.alEmprestimos.add(novoEmprestimo);
+	}
+
 	// -> toString
 	@Override
 	public String toString() {
-		return "ListaEmprestimos [alEmprestimos=" + alEmprestimos + "]";
+		return "Lista dos itens Emprestados" + alEmprestimos;
 	}
 }

@@ -2,12 +2,14 @@ package Emprestimo;
 
 import java.time.LocalDateTime;
 // import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter;
 
 import Amigo.Amigo;
 import Item.Item;
 
-public class Emprestimo {
+public class Emprestimo implements Comparable<Emprestimo> {
 
+	private int diaEmprest, mesEmprest, anoEmprest, horaEmprest, minEmprest;
 	private int idAmigo;
 	private int idItem;
 	private LocalDateTime dataEmprestimo;
@@ -40,6 +42,38 @@ public class Emprestimo {
 		this.dataDevolucao = LocalDateTime.now();
 	}
 
+	public Emprestimo(int idAmigo, int idItem, Item item, Amigo amigo) {
+		this.idAmigo = idAmigo;
+		this.idItem = idItem;
+		this.dataEmprestimo = LocalDateTime.of(2021, 1, 1, 12, 0);
+		this.dataDevolucao = LocalDateTime.of(2021, 1, 2, 12, 0);
+		this.item = item;
+		this.amigo = amigo;
+	}
+
+	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, Item item, Amigo amigo) {
+		this.idAmigo = idAmigo;
+		this.idItem = idItem;
+		this.dataEmprestimo = dataEmprestimo;
+		this.dataDevolucao = null;
+		this.item = item;
+		this.amigo = amigo;
+	}
+
+	public Emprestimo(int idAmigo, int idItem, int dia, int mes, int ano, int hora, int min, Item item, Amigo amigo) {
+		this.idAmigo = idAmigo;
+		this.idItem = idItem;
+		this.diaEmprest = dia;
+		this.mesEmprest = mes;
+		this.anoEmprest = ano;
+		this.horaEmprest = hora;
+		this.minEmprest = min;
+		// this.dataEmprestimo = dataEmprestimo;
+		// this.dataDevolucao = LocalDateTime.of(2021, 1, 2, 12, 0);
+		this.item = item;
+		this.amigo = amigo;
+	}
+
 	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
@@ -47,7 +81,8 @@ public class Emprestimo {
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, Item item, Amigo amigo) {
+	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, Item item,
+			Amigo amigo) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
 		this.dataEmprestimo = dataEmprestimo;
@@ -72,7 +107,7 @@ public class Emprestimo {
 	public LocalDateTime getDataDevolucao() {
 		return dataDevolucao;
 	}
-	
+
 	public Item getItem() {
 		return item;
 	}
@@ -98,6 +133,14 @@ public class Emprestimo {
 		this.dataDevolucao = dataDevolucao;
 	}
 
+	public void setDataEmprestimo2(int dia, int mes, int ano, int hora, int minuto) {
+		this.dataEmprestimo = LocalDateTime.of(ano, mes, dia, hora, minuto);
+	}
+
+	public void setDataDevolucao2(int dia, int mes, int ano, int hora, int minuto) {
+		this.dataDevolucao = LocalDateTime.of(ano, mes, dia, hora, minuto);
+	}
+
 	public void setItem(Item item) {
 		this.item = item;
 	}
@@ -106,10 +149,21 @@ public class Emprestimo {
 		this.amigo = amigo;
 	}
 
+	// -> CompareTo
+	@Override
+	public int compareTo(Emprestimo dataEmprest) {
+		return this.dataEmprestimo.compareTo(dataEmprest.getDataEmprestimo());
+	}
+
 	// -> toString
 	@Override
 	public String toString() {
-		return "Emprestimo [dataDevolucao=" + dataDevolucao + ", dataEmprestimo=" + dataEmprestimo + ", idAmigo="
-				+ idAmigo + ", idItem=" + idItem + "]";
+		if (dataDevolucao == null) {
+			return amigo + "\n" + item + "Data do empréstimo: "
+					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
+		} else
+			return amigo + "\n" + item + "Data do empréstimo: "
+					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nData da devolucao: "
+					+ dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
 	}
 }

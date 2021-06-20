@@ -50,7 +50,7 @@ public class Biblioteca implements Iterable<Item> {
 	// -> toString padrão
 	@Override
 	public String toString() {
-		return "Biblioteca [alItem=" + alItem + ", nomeBib=" + nomeBib + "]";
+		return "Nome da Biblioteca = " + nomeBib + " - " + "alItem = " + alItem;
 	}
 
 	// -> Iterator

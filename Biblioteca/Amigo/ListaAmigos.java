@@ -7,6 +7,10 @@ public class ListaAmigos {
 	private ArrayList<Amigo> alAmigos;
 
 	// -> Constructors
+	public ListaAmigos() {
+		this.alAmigos = new ArrayList<Amigo>();
+	}
+	
 	public ListaAmigos(ArrayList<Amigo> alAmigos) {
 		this.alAmigos = alAmigos;
 	}
@@ -21,6 +25,10 @@ public class ListaAmigos {
 		this.alAmigos = alAmigos;
 	}
 	
+	public void addAmigo(Amigo novoAmigo) {
+		this.alAmigos.add(novoAmigo);
+	}
+
 	// -> toString
 	@Override
 	public String toString() {
