@@ -9,6 +9,7 @@ import Item.Item;
 
 public class Emprestimo {
 
+	private int diaEmprest, mesEmprest, anoEmprest, horaEmprest, minEmprest;
 	private int idAmigo;
 	private int idItem;
 	private LocalDateTime dataEmprestimo;
@@ -46,6 +47,29 @@ public class Emprestimo {
 		this.idItem = idItem;
 		this.dataEmprestimo = LocalDateTime.of(2021, 1, 1, 12, 0);
 		this.dataDevolucao = LocalDateTime.of(2021, 1, 2, 12, 0);
+		this.item = item;
+		this.amigo = amigo;
+	}
+
+	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, Item item, Amigo amigo) {
+		this.idAmigo = idAmigo;
+		this.idItem = idItem;
+		this.dataEmprestimo = dataEmprestimo;
+		this.dataDevolucao = null;
+		this.item = item;
+		this.amigo = amigo;
+	}
+
+	public Emprestimo(int idAmigo, int idItem, int dia, int mes, int ano, int hora, int min, Item item, Amigo amigo) {
+		this.idAmigo = idAmigo;
+		this.idItem = idItem;
+		this.diaEmprest = dia;
+		this.mesEmprest = mes;
+		this.anoEmprest = ano;
+		this.horaEmprest = hora;
+		this.minEmprest = min;
+		// this.dataEmprestimo = dataEmprestimo;
+		// this.dataDevolucao = LocalDateTime.of(2021, 1, 2, 12, 0);
 		this.item = item;
 		this.amigo = amigo;
 	}
@@ -109,6 +133,14 @@ public class Emprestimo {
 		this.dataDevolucao = dataDevolucao;
 	}
 
+	public void setDataEmprestimo2(int dia, int mes, int ano, int hora, int minuto) {
+		this.dataEmprestimo = LocalDateTime.of(ano, mes, dia, hora, minuto);
+	}
+
+	public void setDataDevolucao2(int dia, int mes, int ano, int hora, int minuto) {
+		this.dataDevolucao = LocalDateTime.of(ano, mes, dia, hora, minuto);
+	}
+
 	public void setItem(Item item) {
 		this.item = item;
 	}
@@ -120,8 +152,12 @@ public class Emprestimo {
 	// -> toString
 	@Override
 	public String toString() {
-		return amigo + "\n" + item + "Data do empréstimo: "
-				+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nData da devolução: "
-				+ dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
+		if (dataDevolucao == null) {
+			return amigo + "\n" + item + "Data do empréstimo: "
+					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
+		} else
+			return amigo + "\n" + item + "Data do empréstimo: "
+					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nData da devolucao: "
+					+ dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
 	}
 }
