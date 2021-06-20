@@ -1,9 +1,7 @@
 package Principal;
 
 import java.time.LocalDateTime;
-// import java.time.LocalDateTime;
-import java.util.ArrayList;
-// import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Scanner;
 
 import Item.Biblioteca;
@@ -12,8 +10,10 @@ import Item.Item;
 import Item.Livro;
 import Item.DVD;
 import Item.FitaK7;
+
 import Amigo.Amigo;
 import Amigo.ListaAmigos;
+
 import Emprestimo.ListaEmprestimos;
 import Emprestimo.Emprestimo;
 
@@ -88,16 +88,11 @@ public class Principal {
 					devolverItem(bib1, lista, emprestimos);
 					break;
 				case 5:
+					// TODO fazer case 5
 					System.out.println("Escolha número 5");
 					break;
 				case 6:
-					if (historico.getAlEmprestimos().size() == 0)
-						System.out.println("Não houveram empréstimos");
-					else {
-						for (Emprestimo emprestimo : historico.getAlEmprestimos()) {
-							System.out.println(emprestimo);
-						}
-					}
+					listarHistorico(historico);
 					break;
 				case 7:
 					if (bib1.getAlItem().size() == 0)
@@ -109,6 +104,7 @@ public class Principal {
 					}
 					break;
 				case 8:
+					// TODO fazer case 8
 					alterarEstado();
 					break;
 				case 0:
@@ -163,6 +159,12 @@ public class Principal {
 				obj1.setTotPagLivro(totPagLivro);
 
 				bib1.addItem(obj1);
+				System.out.println();
+				System.out.println("Livro adicionado com sucesso!");
+				System.out.println("Titulo do livro: " + obj1.getTituloItem() + "\n" +
+								   "Autor do livro: " + obj1.getAutorLivro() + "\n" + 
+								   "Numero de páginas: " + obj1.getTotPagLivro());
+
 				break;
 			case 2:
 				DVD obj2;
@@ -188,6 +190,12 @@ public class Principal {
 				obj2.setNumMusicaDvd(numMusicaDvd);
 
 				bib1.addItem(obj2);
+				System.out.println();
+				System.out.println("DVD adicionado com sucesso!");
+				System.out.println("Titulo do DVD: " + obj2.getTituloItem() + "\n" +
+								   "Autor do DVD: " + obj2.getAutorDisco() + "\n" + 
+								   "Numero de músicas: " + obj2.getNumMusicaDvd());
+
 				break;
 			case 3:
 				FitaK7 obj3;
@@ -207,14 +215,21 @@ public class Principal {
 				obj3.setAutorFita(autorFita);
 
 				System.out.println();
-				System.out.println("Quantas musicas tem o DVD: ");
+				System.out.println("Quantas musicas tem a Fita: ");
 				System.out.print(">> ");
 				numMusicaFita = teclado.nextInt();
 				obj3.setNumMusicaFita(numMusicaFita);
 
 				bib1.addItem(obj3);
+				System.out.println();
+				System.out.println("FitaK7 adicionada com sucesso!");
+				System.out.println("Titulo da fita: " + obj3.getTituloItem() + "\n" +
+								   "Autor da fita: " + obj3.getAutorFita() + "\n" + 
+								   "Numero de músicas: " + obj3.getNumMusicaFita());
+
 				break;
 			default:
+				System.out.println();
 				System.out.println("Digite um valor correto!");
 				break;
 		}
@@ -235,12 +250,17 @@ public class Principal {
 		amigo.setNomeAmigo(nomeAmigo);
 
 		lista.addAmigo(amigo);
+		System.out.println("Amigo " + nomeAmigo + " cadastrado com sucesso!");
 	}
 
-	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
+	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos,
+			ListaEmprestimos historico) {
 		// -> Variables
+		//TODO SÓ PODE EMPRESTAR ITEM SE ELE NÃO TIVER EMPRESTADO (MOSTRAR SOMENTE OS DISPONIVEIS)
+		
 		Scanner teclado = new Scanner(System.in);
-		int amigoEmprest, escolhaItemEmprest, diaEmprestimo, mesEmprestimo, anoEmprestimo, horaEmprestimo, minEmprestimo;
+		int amigoEmprest, escolhaItemEmprest, diaEmprestimo, mesEmprestimo, anoEmprestimo, horaEmprestimo,
+				minEmprestimo;
 
 		System.out.println("Para quem você está emprestando: ");
 		System.out.println();
@@ -288,8 +308,11 @@ public class Principal {
 					System.out.println("Qual o minuto do empréstimo: ");
 					System.out.print(">> ");
 					minEmprestimo = teclado.nextInt();
-					
-					Emprestimo emprestimo = new Emprestimo(amigoEmprest, item.getIdItem(), LocalDateTime.of(anoEmprestimo, mesEmprestimo, diaEmprestimo, horaEmprestimo, minEmprestimo), item, lista.getAlAmigos().get(amigoEmprest));
+
+					Emprestimo emprestimo = new Emprestimo(
+							amigoEmprest, item.getIdItem(), LocalDateTime.of(anoEmprestimo, mesEmprestimo,
+									diaEmprestimo, horaEmprestimo, minEmprestimo),
+							item, lista.getAlAmigos().get(amigoEmprest));
 
 					emprestimos.addEmprestimo(emprestimo);
 					item.emprestar();
@@ -306,6 +329,9 @@ public class Principal {
 
 	private static void devolverItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
 		// -> Variables
+		
+		//TODO SÓ PODE DEVOLVER ITEM SE ELE TIVER EMPRESTADO (MOSTRAR SOMENTE OS EMPRESTADOS)
+
 		Scanner teclado = new Scanner(System.in);
 		int amigoDevol, escolhaItemDevol, diaDevol, mesDevol, anoDevol, horaDevol, minDevol;
 
@@ -316,7 +342,8 @@ public class Principal {
 			System.out.println("Ninguem está emprestando nenhum Item no momento.");
 		} else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
-				System.out.println("(" + emprestimos.getAlEmprestimos().indexOf(emprestimo) + ") " + emprestimo.getAmigo().getNomeAmigo());
+				System.out.println("(" + emprestimos.getAlEmprestimos().indexOf(emprestimo) + ") "
+						+ emprestimo.getAmigo().getNomeAmigo());
 			}
 		}
 		System.out.println();
@@ -362,16 +389,27 @@ public class Principal {
 					System.out.print(">> ");
 					minDevol = teclado.nextInt();
 
-					Emprestimo emprestimo = new Emprestimo(amigoDevol, item.getIdItem(), diaDevol, mesDevol, anoDevol, horaDevol,
-							minDevol, item, lista.getAlAmigos().get(amigoDevol));
+					Emprestimo emprestimo = new Emprestimo(amigoDevol, item.getIdItem(), diaDevol, mesDevol, anoDevol,
+							horaDevol, minDevol, item, lista.getAlAmigos().get(amigoDevol));
 
 					emprestimo.setDataDevolucao2(diaDevol, mesDevol, anoDevol, horaDevol, minDevol);
 					item.devolver();
-					//TODO remover a pessoa do emprestimo quando ela já devolveu o ITEM.
+					// TODO remover a pessoa do emprestimo quando ela já devolveu o ITEM.
 					System.out.println();
 					System.out.println("Item devolvido com sucesso!");
 				} else
 					System.out.println("O Item está ocupado no momento, tente novamente mais tarde!");
+			}
+		}
+	}
+
+	private static void listarHistorico(ListaEmprestimos historico) {
+
+		if (historico.getAlEmprestimos().size() == 0)
+			System.out.println("Não houveram empréstimos");
+		else {
+			for (Emprestimo emprestimo : historico.getAlEmprestimos()) {
+				System.out.println(emprestimo);
 			}
 		}
 	}

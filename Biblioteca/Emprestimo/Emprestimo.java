@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import Amigo.Amigo;
 import Item.Item;
 
-public class Emprestimo {
+public class Emprestimo implements Comparable<Emprestimo> {
 
 	private int diaEmprest, mesEmprest, anoEmprest, horaEmprest, minEmprest;
 	private int idAmigo;
@@ -149,15 +149,22 @@ public class Emprestimo {
 		this.amigo = amigo;
 	}
 
+	// -> CompareTo
+	@Override
+	public int compareTo(Emprestimo dataEmprest) {
+		return this.dataEmprestimo.compareTo(dataEmprest.getDataEmprestimo());
+	}
+
 	// -> toString
 	@Override
 	public String toString() {
 		if (dataDevolucao == null) {
 			return amigo + "\n" + item + "Data do empréstimo: "
-					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
+					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
 		} else
 			return amigo + "\n" + item + "Data do empréstimo: "
 					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nData da devolucao: "
-					+ dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm"));
+					+ dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
 	}
+
 }
