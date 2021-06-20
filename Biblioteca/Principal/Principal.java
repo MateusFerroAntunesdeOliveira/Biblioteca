@@ -94,6 +94,7 @@ public class Principal {
 					listarHistorico(historico);
 					break;
 				case 7:
+					//TODO Fazer a listagem em ordem crescente
 					if (bib1.getAlItem().size() == 0)
 						System.out.println("Biblioteca está vazia");
 					else {
@@ -104,6 +105,9 @@ public class Principal {
 					break;
 				case 8:
 					alterarEstado(bib1);
+					break;
+				case 9:
+					//TODO Salvar e ler os dados
 					break;
 				case 0:
 					System.exit(0);
@@ -247,15 +251,12 @@ public class Principal {
 		System.out.println("Amigo " + nomeAmigo + " cadastrado com sucesso!");
 	}
 
-	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos,
-			ListaEmprestimos historico) {
+	//TODO EMPRESTAR ITEM
+	// -> SÓ PODE EMPRESTAR ITEM SE ELE NÃO TIVER EMPRESTADO (MOSTRAR SOMENTE OS ITENS DISPONIVEIS)
+	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
 		// -> Variables
-		// TODO SÓ PODE EMPRESTAR ITEM SE ELE NÃO TIVER EMPRESTADO (MOSTRAR SOMENTE OS
-		// DISPONIVEIS)
-
 		Scanner teclado = new Scanner(System.in);
-		int amigoEmprest, escolhaItemEmprest, diaEmprestimo, mesEmprestimo, anoEmprestimo, horaEmprestimo,
-				minEmprestimo;
+		int amigoEmprest, escolhaItemEmprest, diaEmprestimo, mesEmprestimo, anoEmprestimo, horaEmprestimo, minEmprestimo;
 
 		System.out.println("Para quem você está emprestando: ");
 		System.out.println();
@@ -278,7 +279,6 @@ public class Principal {
 		for (Item item : bib1.getAlItem()) {
 			if (item.getIdItem() == escolhaItemEmprest) {
 				if (item.getDispItem() == Disponibilidade.DISPONIVEL) {
-					// (dd/MM/yyyy - HH:mm)
 					System.out.println();
 					System.out.println("Qual o dia do empréstimo: ");
 					System.out.print(">> ");
@@ -322,10 +322,11 @@ public class Principal {
 		}
 	}
 
-	private static void devolverItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
-		// TODO SÓ PODE DEVOLVER ITEM SE ELE TIVER EMPRESTADO (MOSTRAR SOMENTE OS
-		// EMPRESTADOS)
+	//TODO DEVOLVER ITEM
+	// -> SÓ PODE DEVOLVER ITEM SE ELE TIVER EMPRESTADO (MOSTRAR SOMENTE OS EMPRESTADOS)
+	// -> Remover a pessoa do emprestimo quando ela já devolveu o ITEM.
 
+	private static void devolverItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		int amigoDevol, escolhaItemDevol, diaDevol, mesDevol, anoDevol, horaDevol, minDevol;
@@ -357,7 +358,6 @@ public class Principal {
 		for (Item item : bib1.getAlItem()) {
 			if (item.getIdItem() == escolhaItemDevol) {
 				if (item.getDispItem() == Disponibilidade.EMPRESTADO) {
-					// (dd/MM/yyyy - HH:mm)
 					System.out.println();
 					System.out.println("Qual o dia da devolução: ");
 					System.out.print(">> ");
@@ -388,7 +388,6 @@ public class Principal {
 
 					emprestimo.setDataDevolucao2(diaDevol, mesDevol, anoDevol, horaDevol, minDevol);
 					item.devolver();
-					// TODO remover a pessoa do emprestimo quando ela já devolveu o ITEM.
 					System.out.println();
 					System.out.println("Item devolvido com sucesso!");
 				} else
@@ -397,9 +396,9 @@ public class Principal {
 		}
 	}
 
+	//TODO LISTAR EMPRESTIMOS 
+	// -> ARRUMAR O FOR PRA NÃO PRINTAR + DE 1 VEZ
 	private static void listarEmprestimosAtuais(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
-
-		// TODO ARRUMAR O FOR PRA NÃO PRINTAR + DE 1 VEZ
 		for (Item item : bib1.getAlItem()) {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
 				if (item.getDispItem() == Disponibilidade.EMPRESTADO) {
@@ -411,31 +410,10 @@ public class Principal {
 		}
 	}
 
+	//TODO LISTAR HISTORICO
+	// -> Fazer o fluxo correto, perguntando idItem e as movimentações do item
 	private static void listarHistorico(ListaEmprestimos historico) {
-		Scanner teclado = new Scanner(System.in);
-		// String itemProcurar;
-
-		// System.out.println("\nQual item você quer procurar: ");
-		// System.out.println("LIVRO");
-		// System.out.println("DVD");
-		// System.out.println("FITA K7");
-		// System.out.print(">> ");
-		// itemProcurar = teclado.nextLine();
-
-		// for (Item item : bib1.getAlItem()) {
-		// if (historico.getAlEmprestimos().size() == 0) System.out.println("Não
-		// houveram empréstimos ainda");
-		// else {
-		// if (itemProcurar.toUpperCase() == "LIVRO" || itemProcurar.toUpperCase() ==
-		// "DVD" || itemProcurar.toUpperCase() == "FITA K7") {
-		// System.out.println("\nO título do item: " + itemProcurar);
-		// for (Emprestimo emprestimo : historico.getAlEmprestimos()) {
-		// System.out.println(emprestimo);
-		// }
-		// }
-		// }
-		// }
-
+		
 		if (historico.getAlEmprestimos().size() == 0)
 			System.out.println("Não houveram empréstimos");
 		else {
