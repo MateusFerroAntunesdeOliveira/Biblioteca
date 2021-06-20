@@ -166,5 +166,4 @@ public class Emprestimo implements Comparable<Emprestimo> {
 					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nData da devolucao: "
 					+ dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
 	}
-
 }

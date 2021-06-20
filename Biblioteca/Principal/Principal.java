@@ -1,6 +1,7 @@
 package Principal;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import Item.Biblioteca;
@@ -87,8 +88,7 @@ public class Principal {
 					devolverItem(bib1, lista, emprestimos);
 					break;
 				case 5:
-					// TODO fazer case 5
-					System.out.println("Escolha número 5");
+					listarEmprestimosAtuais(bib1, lista, emprestimos);
 					break;
 				case 6:
 					listarHistorico(historico);
@@ -103,8 +103,7 @@ public class Principal {
 					}
 					break;
 				case 8:
-					// TODO fazer case 8
-					alterarEstado();
+					alterarEstado(bib1);
 					break;
 				case 0:
 					System.exit(0);
@@ -160,9 +159,8 @@ public class Principal {
 				bib1.addItem(obj1);
 				System.out.println();
 				System.out.println("Livro adicionado com sucesso!");
-				System.out.println("Titulo do livro: " + obj1.getTituloItem() + "\n" +
-								   "Autor do livro: " + obj1.getAutorLivro() + "\n" + 
-								   "Numero de páginas: " + obj1.getTotPagLivro());
+				System.out.println("Titulo do livro: " + obj1.getTituloItem() + "\n" + "Autor do livro: "
+						+ obj1.getAutorLivro() + "\n" + "Numero de páginas: " + obj1.getTotPagLivro());
 
 				break;
 			case 2:
@@ -191,9 +189,8 @@ public class Principal {
 				bib1.addItem(obj2);
 				System.out.println();
 				System.out.println("DVD adicionado com sucesso!");
-				System.out.println("Titulo do DVD: " + obj2.getTituloItem() + "\n" +
-								   "Autor do DVD: " + obj2.getAutorDisco() + "\n" + 
-								   "Numero de músicas: " + obj2.getNumMusicaDvd());
+				System.out.println("Titulo do DVD: " + obj2.getTituloItem() + "\n" + "Autor do DVD: "
+						+ obj2.getAutorDisco() + "\n" + "Numero de músicas: " + obj2.getNumMusicaDvd());
 
 				break;
 			case 3:
@@ -222,9 +219,8 @@ public class Principal {
 				bib1.addItem(obj3);
 				System.out.println();
 				System.out.println("FitaK7 adicionada com sucesso!");
-				System.out.println("Titulo da fita: " + obj3.getTituloItem() + "\n" +
-								   "Autor da fita: " + obj3.getAutorFita() + "\n" + 
-								   "Numero de músicas: " + obj3.getNumMusicaFita());
+				System.out.println("Titulo da fita: " + obj3.getTituloItem() + "\n" + "Autor da fita: "
+						+ obj3.getAutorFita() + "\n" + "Numero de músicas: " + obj3.getNumMusicaFita());
 
 				break;
 			default:
@@ -238,9 +234,8 @@ public class Principal {
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		String nomeAmigo;
-		Amigo amigo;
 
-		amigo = new Amigo(lista.getAlAmigos().size(), "");
+		Amigo amigo = new Amigo(lista.getAlAmigos().size(), "");
 		System.out.println();
 		System.out.println("Qual o nome do seu abiguinho: ");
 		System.out.print(">> ");
@@ -255,8 +250,9 @@ public class Principal {
 	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos,
 			ListaEmprestimos historico) {
 		// -> Variables
-		//TODO SÓ PODE EMPRESTAR ITEM SE ELE NÃO TIVER EMPRESTADO (MOSTRAR SOMENTE OS DISPONIVEIS)
-		
+		// TODO SÓ PODE EMPRESTAR ITEM SE ELE NÃO TIVER EMPRESTADO (MOSTRAR SOMENTE OS
+		// DISPONIVEIS)
+
 		Scanner teclado = new Scanner(System.in);
 		int amigoEmprest, escolhaItemEmprest, diaEmprestimo, mesEmprestimo, anoEmprestimo, horaEmprestimo,
 				minEmprestimo;
@@ -327,18 +323,17 @@ public class Principal {
 	}
 
 	private static void devolverItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
-		// -> Variables
-		
-		//TODO SÓ PODE DEVOLVER ITEM SE ELE TIVER EMPRESTADO (MOSTRAR SOMENTE OS EMPRESTADOS)
+		// TODO SÓ PODE DEVOLVER ITEM SE ELE TIVER EMPRESTADO (MOSTRAR SOMENTE OS
+		// EMPRESTADOS)
 
+		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		int amigoDevol, escolhaItemDevol, diaDevol, mesDevol, anoDevol, horaDevol, minDevol;
 
 		System.out.println("Quem está devolvendo o item: ");
 		System.out.println();
 		if (emprestimos.getAlEmprestimos().size() == 0) {
-			System.out.println();
-			System.out.println("Ninguem está emprestando nenhum Item no momento.");
+			System.out.println("\nNinguem está emprestando nenhum Item no momento.");
 		} else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
 				System.out.println("(" + emprestimos.getAlEmprestimos().indexOf(emprestimo) + ") "
@@ -402,7 +397,44 @@ public class Principal {
 		}
 	}
 
+	private static void listarEmprestimosAtuais(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
+
+		// TODO ARRUMAR O FOR PRA NÃO PRINTAR + DE 1 VEZ
+		for (Item item : bib1.getAlItem()) {
+			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
+				if (item.getDispItem() == Disponibilidade.EMPRESTADO) {
+					System.out.println("Titulo do item: " + item.getTituloItem() + " - " + "Quem emprestou: "
+							+ emprestimo.getAmigo().getNomeAmigo() + "\nData empréstimo: "
+							+ emprestimo.getDataEmprestimo().format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")));
+				}
+			}
+		}
+	}
+
 	private static void listarHistorico(ListaEmprestimos historico) {
+		Scanner teclado = new Scanner(System.in);
+		// String itemProcurar;
+
+		// System.out.println("\nQual item você quer procurar: ");
+		// System.out.println("LIVRO");
+		// System.out.println("DVD");
+		// System.out.println("FITA K7");
+		// System.out.print(">> ");
+		// itemProcurar = teclado.nextLine();
+
+		// for (Item item : bib1.getAlItem()) {
+		// if (historico.getAlEmprestimos().size() == 0) System.out.println("Não
+		// houveram empréstimos ainda");
+		// else {
+		// if (itemProcurar.toUpperCase() == "LIVRO" || itemProcurar.toUpperCase() ==
+		// "DVD" || itemProcurar.toUpperCase() == "FITA K7") {
+		// System.out.println("\nO título do item: " + itemProcurar);
+		// for (Emprestimo emprestimo : historico.getAlEmprestimos()) {
+		// System.out.println(emprestimo);
+		// }
+		// }
+		// }
+		// }
 
 		if (historico.getAlEmprestimos().size() == 0)
 			System.out.println("Não houveram empréstimos");
@@ -413,10 +445,52 @@ public class Principal {
 		}
 	}
 
-	private static void alterarEstado() {
+	private static void alterarEstado(Biblioteca bib1) {
 		// -> Variables
-		// Scanner teclado = new Scanner(System.in);
+		Scanner teclado = new Scanner(System.in);
+		int itemAlterarEstado, alterarEstado;
 
-		System.out.println("Escolha número 8");
+		System.out.println("\nQual item você quer alterar o estado: ");
+		System.out.println();
+		for (Item item : bib1.getAlItem()) {
+			System.out.println("(" + item.getIdItem() + ") " + bib1.getAlItem().get(item.getIdItem()));
+		}
+		System.out.print(">> ");
+		itemAlterarEstado = teclado.nextInt();
+
+		System.out.println("Para qual estado você quer alterar: ");
+		System.out.println("(1) - CONSULTALOCAL");
+		System.out.println("(2) - DANIFICADO");
+		System.out.println("(3) - EXTRAVIADO");
+		System.out.print(">> ");
+		teclado.nextLine();
+		alterarEstado = teclado.nextInt();
+
+		switch (alterarEstado) {
+			case 1:
+				for (int i = 0; i < bib1.getAlItem().size(); i++) {
+					if (bib1.getAlItem().get(itemAlterarEstado).getDispItem() != Disponibilidade.EMPRESTADO) {
+						bib1.getAlItem().get(itemAlterarEstado).consultaLocal();
+					}
+				}
+				if (bib1.getAlItem().get(itemAlterarEstado).getDispItem() != Disponibilidade.EMPRESTADO) System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
+				else System.out.println("Não consigo acessar o livro para a consulta, ele pode estar emprestado...");
+				break;
+			case 2:
+				for (int i = 0; i < bib1.getAlItem().size(); i++) {
+					bib1.getAlItem().get(itemAlterarEstado).Danificado();
+				}
+				System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
+				break;
+			case 3:
+				for (int i = 0; i < bib1.getAlItem().size(); i++) {
+					bib1.getAlItem().get(itemAlterarEstado).Extraviado();
+				}
+				System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
+				break;
+			default:
+				System.out.println("Digite um valor entre 1 e 3, por gentileza!");
+				break;
+		}
 	}
 }

@@ -33,6 +33,6 @@ public class ListaEmprestimos {
 	// -> toString
 	@Override
 	public String toString() {
-		return "ListaEmprestimos [alEmprestimos=" + alEmprestimos + "]";
+		return "Lista dos itens Emprestados" + alEmprestimos;
 	}
 }
