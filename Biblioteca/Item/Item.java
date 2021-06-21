@@ -1,6 +1,6 @@
 package Item;
 
-public abstract class Item{
+public abstract class Item implements Comparable<Item>{
 
 	private int IdItem;
 	private String tituloItem;
@@ -76,6 +76,11 @@ public abstract class Item{
 	// -> Extraviado
 	public void Extraviado() {
 		this.dispItem = Disponibilidade.EXTRAVIADO;
+	}
+
+	// -> CompareTo
+	public int compareTo(Item compItem) {
+		return  tituloItem.compareTo(compItem.getTituloItem());
 	}
 
 	// -> toString

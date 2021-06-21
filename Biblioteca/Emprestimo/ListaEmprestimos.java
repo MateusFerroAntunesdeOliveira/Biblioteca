@@ -30,6 +30,11 @@ public class ListaEmprestimos {
 		this.alEmprestimos.add(novoEmprestimo);
 	}
 
+	// -> RemoveEmprestimo
+	public void removeEmprestimo(Emprestimo novoEmprestimo) {
+		this.alEmprestimos.remove(novoEmprestimo);
+	}
+
 	// -> toString
 	@Override
 	public String toString() {

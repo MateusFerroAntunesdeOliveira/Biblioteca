@@ -1,7 +1,6 @@
 package Emprestimo;
 
 import java.time.LocalDateTime;
-// import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatter;
 
 import Amigo.Amigo;
@@ -18,11 +17,6 @@ public class Emprestimo implements Comparable<Emprestimo> {
 	private Amigo amigo;
 
 	// -> Constructors
-	public Emprestimo() {
-		this.idAmigo = 0000;
-		this.idItem = 0000;
-	}
-
 	public Emprestimo(int idAmigo, int idItem) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
@@ -81,8 +75,7 @@ public class Emprestimo implements Comparable<Emprestimo> {
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, Item item,
-			Amigo amigo) {
+	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, Item item, Amigo amigo) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
 		this.dataEmprestimo = dataEmprestimo;
@@ -129,12 +122,12 @@ public class Emprestimo implements Comparable<Emprestimo> {
 		this.dataEmprestimo = dataEmprestimo;
 	}
 
-	public void setDataDevolucao(LocalDateTime dataDevolucao) {
-		this.dataDevolucao = dataDevolucao;
-	}
-
 	public void setDataEmprestimo2(int dia, int mes, int ano, int hora, int minuto) {
 		this.dataEmprestimo = LocalDateTime.of(ano, mes, dia, hora, minuto);
+	}
+
+	public void setDataDevolucao(LocalDateTime dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
 	}
 
 	public void setDataDevolucao2(int dia, int mes, int ano, int hora, int minuto) {
@@ -158,7 +151,7 @@ public class Emprestimo implements Comparable<Emprestimo> {
 	// -> toString
 	@Override
 	public String toString() {
-		if (dataDevolucao == null) {
+		if (this.dataDevolucao == null) {
 			return amigo + "\n" + item + "Data do empréstimo: "
 					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
 		} else
