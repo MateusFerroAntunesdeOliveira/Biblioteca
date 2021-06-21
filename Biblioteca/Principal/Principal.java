@@ -1,7 +1,8 @@
 package Principal;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import Item.Biblioteca;
@@ -34,8 +35,7 @@ public class Principal {
 		final Item fita1 = new FitaK7(3, "Fita do Joãozinho", Disponibilidade.DISPONIVEL, "João", 5);
 		final Item fita2 = new FitaK7(4, "FitaK7 das boas", Disponibilidade.DISPONIVEL, "José da Fita", 45);
 		final Item dvd1 = new DVD(5, "Xuxa para os baixinhos", Disponibilidade.DISPONIVEL, "Xuxa", 10);
-		final Item dvd2 = new DVD(6, "Victor e Leo", Disponibilidade.DISPONIVEL, "Victor e Leo", 22);
-		final Item dvd3 = new DVD(7, "Queen", Disponibilidade.DISPONIVEL, "Queen", 12);
+		final Item dvd2 = new DVD(6, "Queen", Disponibilidade.DISPONIVEL, "Queen", 12);
 
 		// -> dummy data addItem
 		bib1.addItem(livro1);
@@ -45,7 +45,6 @@ public class Principal {
 		bib1.addItem(fita2);
 		bib1.addItem(dvd1);
 		bib1.addItem(dvd2);
-		bib1.addItem(dvd3);
 
 		// -> dummy data ListaAmigos
 		final ListaAmigos lista = new ListaAmigos();
@@ -98,21 +97,13 @@ public class Principal {
 					devolverItem(bib1, lista, emprestimos);
 					break;
 				case 5:
-					if (emprestimos.getAlEmprestimos().size() == 0) System.out.println("Não há empréstimos ainda!");
-					else listarEmprestimosAtuais(bib1, lista, emprestimos);
+					listarEmprestimosAtuais(bib1, lista, emprestimos);
 					break;
 				case 6:
 					listarHistorico(historico);
 					break;
 				case 7:
-					//TODO Fazer a listagem em ordem crescente
-					if (bib1.size() == 0)
-						System.out.println("Biblioteca está vazia");
-					else {
-						for (Item item : bib1.getAlItem()) {
-							System.out.println("(" + item.getIdItem() + ") " + "- Titulo do item: " + item.getTituloItem() + " - " + bib1.getAlItem().get(item.getIdItem()));
-						}
-					}
+					listarBiblioteca(bib1);
 					break;
 				case 8:
 					alterarEstado(bib1);
@@ -242,7 +233,7 @@ public class Principal {
 				System.out.println();
 				System.out.println("Digite um valor correto!");
 				break;
-		}
+			}
 	}
 
 	private static void cadastrarAmigo(ListaAmigos lista) {
@@ -335,8 +326,10 @@ public class Principal {
 
 	private static void devolverItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
 		// -> Variables
+		ArrayList<Amigo> amigos = new ArrayList<Amigo>();
 		Scanner teclado = new Scanner(System.in);
-		int amigoDevol, escolhaItemDevol, diaDevol, mesDevol, anoDevol, horaDevol, minDevol;
+		Amigo amigoDevol; 
+		int escolhaItemDevol, diaDevol, mesDevol, anoDevol, horaDevol, minDevol;
 
 		System.out.println("Quem está devolvendo o item: ");
 		System.out.println();
@@ -345,20 +338,22 @@ public class Principal {
 		} else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
 				System.out.println("(" + emprestimos.getAlEmprestimos().indexOf(emprestimo) + ") " + emprestimo.getAmigo().getNomeAmigo());
+				amigos.add(emprestimo.getAmigo());
 			}
 		}
 		System.out.println();
 		System.out.print(">> ");
-		amigoDevol = teclado.nextInt();
+		amigoDevol = amigos.get(teclado.nextInt());  
 		System.out.println();
 
 		System.out.println("Qual item você quer devolver: ");
 		System.out.println();
-		for (Item item : bib1.getAlItem()) {
-			if (item.getDispItem().equals(Disponibilidade.EMPRESTADO)) {
-				System.out.println("(" + item.getIdItem() + ") " + bib1.getAlItem().get(item.getIdItem()));
+		for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
+			if (emprestimo.getAmigo().getIdAmigo() == amigoDevol.getIdAmigo() && emprestimo.getItem().getDispItem().equals(Disponibilidade.EMPRESTADO)) {
+				System.out.println("(" + emprestimo.getItem().getIdItem() + ") " + bib1.getAlItem().get(emprestimo.getItem().getIdItem()));
 			}
 		}
+	
 		System.out.print(">> ");
 		escolhaItemDevol = teclado.nextInt();
 		System.out.println();
@@ -391,7 +386,7 @@ public class Principal {
 					System.out.print(">> ");
 					minDevol = teclado.nextInt();
 
-					Emprestimo emprestimo = new Emprestimo(amigoDevol, item.getIdItem(), diaDevol, mesDevol, anoDevol, horaDevol, minDevol, item, lista.getAlAmigos().get(amigoDevol));
+					Emprestimo emprestimo = new Emprestimo(amigoDevol.getIdAmigo(), item.getIdItem(), diaDevol, mesDevol, anoDevol, horaDevol, minDevol, item, amigoDevol);
 
 					emprestimo.setDataDevolucao2(diaDevol, mesDevol, anoDevol, horaDevol, minDevol);
 					item.devolver();
@@ -403,29 +398,68 @@ public class Principal {
 		}
 	}
 
-	//TODO LISTAR EMPRESTIMOS 
-	// -> ARRUMAR O FOR PRA NÃO PRINTAR + DE 1 VEZ
 	private static void listarEmprestimosAtuais(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
-		for (Item item : bib1.getAlItem()) {
+		if (emprestimos.getAlEmprestimos().size() == 0) System.out.println("Não há empréstimos ainda!");
+		else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
-				if (item.getDispItem() == Disponibilidade.EMPRESTADO) {
-					System.out.println("Titulo do item: " + item.getTituloItem() + " - " + "Quem emprestou: "
-							+ emprestimo.getAmigo().getNomeAmigo() + "\nData empréstimo: "
-							+ emprestimo.getDataEmprestimo().format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")));
+					if (emprestimo.getItem().getDispItem() == Disponibilidade.EMPRESTADO) {
+					System.out.println(emprestimo);
 				}
 			}
 		}
 	}
 
-	//TODO LISTAR HISTORICO
-	// -> Fazer o fluxo correto, perguntando idItem e as movimentações do item
 	private static void listarHistorico(ListaEmprestimos historico) {
-		
 		if (historico.getAlEmprestimos().size() == 0)
 			System.out.println("Não houveram empréstimos");
 		else {
 			for (Emprestimo emprestimo : historico.getAlEmprestimos()) {
 				System.out.println(emprestimo);
+			}
+		}
+	}
+
+	private static void listarBiblioteca(Biblioteca bib1) {
+		// -> Variables
+		Scanner teclado = new Scanner(System.in);
+		int ordenarBib;
+
+		if (bib1.size() == 0)
+			System.out.println("Biblioteca está vazia no momento!");
+		else {
+			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+			System.out.println("Deseja ordenar em ordem crescente a biblioteca (por título)? ");
+			System.out.println();
+			System.out.println("Caso digite (1), não será possível retornar para a ordenação anterior");
+			System.out.println("A Alteração não poderá ser desfeita! Só pode ser realizada uma vez!");
+			System.out.println();
+			System.out.println("(1) SIM ");
+			System.out.println("(2) NÃO ");
+			System.out.println();
+			System.out.println("(3) Voltar pro menu");
+			System.out.println();
+			System.out.print(">> ");
+			ordenarBib = teclado.nextInt();
+
+			switch (ordenarBib) {
+				case 1:
+					System.out.println();
+					Collections.sort(bib1.getAlItem());
+					for (Item item : bib1.getAlItem()) {
+						System.out.println("Titulo do item: " + item.getTituloItem() + " - " + bib1.getAlItem().get(item.getIdItem()));
+					}
+					break;
+				case 2:
+					System.out.println();
+					for (Item item : bib1.getAlItem()) {
+						System.out.println("(" + item.getIdItem() + ") " + "-" + "Titulo do item: " + item.getTituloItem() + " - " + bib1.getAlItem().get(item.getIdItem()));
+					}
+					break;
+				case 3:
+					break;
+				default:
+					System.out.println("Por gentileza, digite uma opção válida!");
+					break;
 			}
 		}
 	}
