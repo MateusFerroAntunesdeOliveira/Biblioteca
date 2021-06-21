@@ -1,8 +1,9 @@
 package Emprestimo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ListaEmprestimos {
+public class ListaEmprestimos implements Serializable {
 
 	private ArrayList<Emprestimo> alEmprestimos;
 

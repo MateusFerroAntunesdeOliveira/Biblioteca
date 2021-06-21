@@ -1,9 +1,10 @@
 package Item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Biblioteca implements Iterable<Item> {
+public class Biblioteca implements Iterable<Item>, Serializable{
 
 	private String nomeBib;
 	private ArrayList<Item> alItem;

@@ -1,6 +1,8 @@
 package Item;
 
-public abstract class Item implements Comparable<Item>{
+import java.io.Serializable;
+
+public abstract class Item implements Comparable<Item>, Serializable{
 
 	private int IdItem;
 	private String tituloItem;
