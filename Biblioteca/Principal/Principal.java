@@ -28,16 +28,24 @@ public class Principal {
 		final Biblioteca bib1 = new Biblioteca("Biblioteca Pessoal");
 
 		// -> dummy data Item
-		final Item livro1 = new Livro(0, "tituloLivro1", Disponibilidade.DISPONIVEL, "Joao", 30);
-		final Item livro2 = new Livro(1, "tituloLivro2", Disponibilidade.DISPONIVEL, "Ricardo2", 50);
-		final Item fita1 = new FitaK7(2, "tituloFita1", Disponibilidade.DISPONIVEL, "Milena", 5);
-		final Item dvd1 = new DVD(3, "tituloDVD1", Disponibilidade.DISPONIVEL, "Ricardo", 2);
+		final Item livro1 = new Livro(0, "50 Ideias de Fisica Quantica", Disponibilidade.DISPONIVEL, "Joanne Baker", 211);
+		final Item livro2 = new Livro(1, "O Senhor dos Aneis", Disponibilidade.DISPONIVEL, "J.R.R. Tolkien", 1201);
+		final Item livro3 = new Livro(2, "A Dança dos Dragões", Disponibilidade.DISPONIVEL, "George R.R. Martin", 864);
+		final Item fita1 = new FitaK7(3, "Fita do Joãozinho", Disponibilidade.DISPONIVEL, "João", 5);
+		final Item fita2 = new FitaK7(4, "FitaK7 das boas", Disponibilidade.DISPONIVEL, "José da Fita", 45);
+		final Item dvd1 = new DVD(5, "Xuxa para os baixinhos", Disponibilidade.DISPONIVEL, "Xuxa", 10);
+		final Item dvd2 = new DVD(6, "Victor e Leo", Disponibilidade.DISPONIVEL, "Victor e Leo", 22);
+		final Item dvd3 = new DVD(7, "Queen", Disponibilidade.DISPONIVEL, "Queen", 12);
 
 		// -> dummy data addItem
 		bib1.addItem(livro1);
 		bib1.addItem(livro2);
+		bib1.addItem(livro3);
 		bib1.addItem(fita1);
+		bib1.addItem(fita2);
 		bib1.addItem(dvd1);
+		bib1.addItem(dvd2);
+		bib1.addItem(dvd3);
 
 		// -> dummy data ListaAmigos
 		final ListaAmigos lista = new ListaAmigos();
@@ -47,12 +55,14 @@ public class Principal {
 		final Amigo amigo2 = new Amigo(1, "Milena");
 		final Amigo amigo3 = new Amigo(2, "Ricardo");
 		final Amigo amigo4 = new Amigo(3, "Cadu");
+		final Amigo amigo5 = new Amigo(4, "Mateus");
 
 		// -> dummy data addAmigo
 		lista.addAmigo(amigo1);
 		lista.addAmigo(amigo2);
 		lista.addAmigo(amigo3);
 		lista.addAmigo(amigo4);
+		lista.addAmigo(amigo5);
 
 		// -> dummy data ListaEmprestimos
 		final ListaEmprestimos emprestimos = new ListaEmprestimos();
@@ -99,7 +109,7 @@ public class Principal {
 						System.out.println("Biblioteca está vazia");
 					else {
 						for (Item item : bib1.getAlItem()) {
-							System.out.println("(" + item.getIdItem() + ") " + bib1.getAlItem().get(item.getIdItem()));
+							System.out.println("(" + item.getIdItem() + ") " + "- Titulo do item: " + item.getTituloItem() + " - " + bib1.getAlItem().get(item.getIdItem()));
 						}
 					}
 					break;
@@ -237,9 +247,9 @@ public class Principal {
 	private static void cadastrarAmigo(ListaAmigos lista) {
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
-		String nomeAmigo;
+		String nomeAmigo = "";
+		Amigo amigo = new Amigo(lista.getAlAmigos().size(), nomeAmigo);
 
-		Amigo amigo = new Amigo(lista.getAlAmigos().size(), "");
 		System.out.println();
 		System.out.println("Qual o nome do seu abiguinho: ");
 		System.out.print(">> ");
@@ -251,8 +261,6 @@ public class Principal {
 		System.out.println("Amigo " + nomeAmigo + " cadastrado com sucesso!");
 	}
 
-	//TODO EMPRESTAR ITEM
-	// -> SÓ PODE EMPRESTAR ITEM SE ELE NÃO TIVER EMPRESTADO (MOSTRAR SOMENTE OS ITENS DISPONIVEIS)
 	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
@@ -270,7 +278,9 @@ public class Principal {
 		System.out.println("Qual item você quer emprestar: ");
 		System.out.println();
 		for (Item item : bib1.getAlItem()) {
-			System.out.println("(" + item.getIdItem() + ") " + bib1.getAlItem().get(item.getIdItem()));
+			if (item.getDispItem().equals(Disponibilidade.DISPONIVEL)) {
+				System.out.println("(" + item.getIdItem() + ") " + "Titulo do item: " + item.getTituloItem() + "\n" + bib1.getAlItem().get(item.getIdItem()));
+			}
 		}
 		System.out.print(">> ");
 		escolhaItemEmprest = teclado.nextInt();
