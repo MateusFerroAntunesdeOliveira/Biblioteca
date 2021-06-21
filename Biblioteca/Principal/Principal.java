@@ -1,5 +1,11 @@
 package Principal;
 
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +15,7 @@ import Item.Biblioteca;
 import Item.Disponibilidade;
 import Item.Item;
 import Item.Livro;
-import Item.DVD;
+import Item.CD;
 import Item.FitaK7;
 
 import Amigo.Amigo;
@@ -29,39 +35,39 @@ public class Principal {
 		final Biblioteca bib1 = new Biblioteca("Biblioteca Pessoal");
 
 		// -> dummy data Item
-		final Item livro1 = new Livro(0, "50 Ideias de Fisica Quantica", Disponibilidade.DISPONIVEL, "Joanne Baker", 211);
-		final Item livro2 = new Livro(1, "O Senhor dos Aneis", Disponibilidade.DISPONIVEL, "J.R.R. Tolkien", 1201);
-		final Item livro3 = new Livro(2, "A Dança dos Dragões", Disponibilidade.DISPONIVEL, "George R.R. Martin", 864);
-		final Item fita1 = new FitaK7(3, "Fita do Joãozinho", Disponibilidade.DISPONIVEL, "João", 5);
-		final Item fita2 = new FitaK7(4, "FitaK7 das boas", Disponibilidade.DISPONIVEL, "José da Fita", 45);
-		final Item dvd1 = new DVD(5, "Xuxa para os baixinhos", Disponibilidade.DISPONIVEL, "Xuxa", 10);
-		final Item dvd2 = new DVD(6, "Queen", Disponibilidade.DISPONIVEL, "Queen", 12);
+		// final Item livro1 = new Livro(0, "50 Ideias de Fisica Quantica", Disponibilidade.DISPONIVEL, "Joanne Baker", 211);
+		// final Item livro2 = new Livro(1, "O Senhor dos Aneis", Disponibilidade.DISPONIVEL, "J.R.R. Tolkien", 1201);
+		// final Item livro3 = new Livro(2, "A Dança dos Dragões", Disponibilidade.DISPONIVEL, "George R.R. Martin", 864);
+		// final Item fita1 = new FitaK7(3, "Fita do Joãozinho", Disponibilidade.DISPONIVEL, "João", 5);
+		// final Item fita2 = new FitaK7(4, "FitaK7 das boas", Disponibilidade.DISPONIVEL, "José da Fita", 45);
+		// final Item CD1 = new CD(5, "Xuxa para os baixinhos", Disponibilidade.DISPONIVEL, "Xuxa", 10);
+		// final Item CD2 = new CD(6, "Queen", Disponibilidade.DISPONIVEL, "Queen", 12);
 
 		// -> dummy data addItem
-		bib1.addItem(livro1);
-		bib1.addItem(livro2);
-		bib1.addItem(livro3);
-		bib1.addItem(fita1);
-		bib1.addItem(fita2);
-		bib1.addItem(dvd1);
-		bib1.addItem(dvd2);
+		// bib1.addItem(livro1);
+		// bib1.addItem(livro2);
+		// bib1.addItem(livro3);
+		// bib1.addItem(fita1);
+		// bib1.addItem(fita2);
+		// bib1.addItem(CD1);
+		// bib1.addItem(CD2);
 
 		// -> dummy data ListaAmigos
 		final ListaAmigos lista = new ListaAmigos();
 
 		// - > dummy data Amigos
-		final Amigo amigo1 = new Amigo(0, "Joao");
-		final Amigo amigo2 = new Amigo(1, "Milena");
-		final Amigo amigo3 = new Amigo(2, "Ricardo");
-		final Amigo amigo4 = new Amigo(3, "Cadu");
-		final Amigo amigo5 = new Amigo(4, "Mateus");
+		// final Amigo amigo1 = new Amigo(0, "Joao");
+		// final Amigo amigo2 = new Amigo(1, "Milena");
+		// final Amigo amigo3 = new Amigo(2, "Ricardo");
+		// final Amigo amigo4 = new Amigo(3, "Cadu");
+		// final Amigo amigo5 = new Amigo(4, "Mateus");
 
 		// -> dummy data addAmigo
-		lista.addAmigo(amigo1);
-		lista.addAmigo(amigo2);
-		lista.addAmigo(amigo3);
-		lista.addAmigo(amigo4);
-		lista.addAmigo(amigo5);
+		// lista.addAmigo(amigo1);
+		// lista.addAmigo(amigo2);
+		// lista.addAmigo(amigo3);
+		// lista.addAmigo(amigo4);
+		// lista.addAmigo(amigo5);
 
 		// -> dummy data ListaEmprestimos
 		final ListaEmprestimos emprestimos = new ListaEmprestimos();
@@ -70,15 +76,17 @@ public class Principal {
 		// -> Menu
 		do {
 			System.out.println("\n=-=-= Menu de opcoes =-=-=\n");
-			System.out.println(" 1 - Cadastrar Item");
-			System.out.println(" 2 - Cadastrar Amigo");
-			System.out.println(" 3 - Emprestar Item");
-			System.out.println(" 4 - Devolver Item");
-			System.out.println(" 5 - Listar empréstimos atuais");
-			System.out.println(" 6 - Listar histórico de empréstimos");
-			System.out.println(" 7 - Listar biblioteca");
-			System.out.println(" 8 - Alterar estado manualmente");
-			System.out.println(" 0 - Sair do Programa");
+			System.out.println(" 01 - Cadastrar Item");
+			System.out.println(" 02 - Cadastrar Amigo");
+			System.out.println(" 03 - Emprestar Item");
+			System.out.println(" 04 - Devolver Item");
+			System.out.println(" 05 - Listar empréstimos atuais");
+			System.out.println(" 06 - Listar histórico de empréstimos");
+			System.out.println(" 07 - Listar biblioteca");
+			System.out.println(" 08 - Alterar estado manualmente");
+			System.out.println(" 09 - Gravar dados");
+			System.out.println(" 10 - Ler dados");
+			System.out.println(" 00 - Sair do Programa");
 			System.out.print(" >> ");
 			escolhaMenu = teclado.nextInt();
 			System.out.print("\n");
@@ -109,7 +117,10 @@ public class Principal {
 					alterarEstado(bib1);
 					break;
 				case 9:
-					//TODO Salvar e ler os dados
+					storeData(bib1, lista, emprestimos, historico);
+					break;
+				case 10:
+					readData(bib1, lista, emprestimos, historico);
 					break;
 				case 0:
 					System.exit(0);
@@ -125,14 +136,14 @@ public class Principal {
 	private static void cadastrarItem(Biblioteca bib1) {
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
-		int escolhaItem, totPagLivro, numMusicaDvd, numMusicaFita;
+		int escolhaItem, totPagLivro, numMusicaCD, numMusicaFita;
 		String autorLivro, autorDisco, autorFita, tituloItem;
 
 		System.out.println();
 		System.out.println("=-=-=-=-=-= Cadatrar Item =-=-=-=-=-= ");
 		System.out.println("Qual o tipo de item que deseja cadastrar: ");
 		System.out.println("(1) - Livro");
-		System.out.println("(2) - DVD");
+		System.out.println("(2) - CD");
 		System.out.println("(3) - Fita K7");
 		System.out.print(">> ");
 		escolhaItem = teclado.nextInt();
@@ -170,8 +181,8 @@ public class Principal {
 
 				break;
 			case 2:
-				DVD obj2;
-				obj2 = new DVD(bib1.size(), "", Disponibilidade.DISPONIVEL);
+				CD obj2;
+				obj2 = new CD(bib1.size(), "", Disponibilidade.DISPONIVEL);
 
 				System.out.println();
 				System.out.println("Qual o título do item: ");
@@ -181,22 +192,22 @@ public class Principal {
 				obj2.setTituloItem(tituloItem);
 
 				System.out.println();
-				System.out.println("Qual o autor do DVD: ");
+				System.out.println("Qual o autor do CD: ");
 				System.out.print(">> ");
 				autorDisco = teclado.nextLine();
 				obj2.setAutorDisco(autorDisco);
 
 				System.out.println();
-				System.out.println("Quantas musicas tem o DVD: ");
+				System.out.println("Quantas musicas tem o CD: ");
 				System.out.print(">> ");
-				numMusicaDvd = teclado.nextInt();
-				obj2.setNumMusicaDvd(numMusicaDvd);
+				numMusicaCD = teclado.nextInt();
+				obj2.setNumMusicaCD(numMusicaCD);
 
 				bib1.addItem(obj2);
 				System.out.println();
-				System.out.println("DVD adicionado com sucesso!");
-				System.out.println("Titulo do DVD: " + obj2.getTituloItem() + "\n" + "Autor do DVD: "
-						+ obj2.getAutorDisco() + "\n" + "Numero de músicas: " + obj2.getNumMusicaDvd());
+				System.out.println("CD adicionado com sucesso!");
+				System.out.println("Titulo do CD: " + obj2.getTituloItem() + "\n" + "Autor do CD: "
+						+ obj2.getAutorDisco() + "\n" + "Numero de músicas: " + obj2.getNumMusicaCD());
 
 				break;
 			case 3:
@@ -452,7 +463,7 @@ public class Principal {
 				case 2:
 					System.out.println();
 					for (Item item : bib1.getAlItem()) {
-						System.out.println("(" + item.getIdItem() + ") " + "-" + "Titulo do item: " + item.getTituloItem() + " - " + bib1.getAlItem().get(item.getIdItem()));
+						System.out.println("(" + item.getIdItem() + ")" + " - " + "Titulo do item: " + item.getTituloItem() + " - " + bib1.getAlItem().get(item.getIdItem()));
 					}
 					break;
 				case 3:
@@ -510,6 +521,63 @@ public class Principal {
 			default:
 				System.out.println("Digite um valor entre 1 e 3, por gentileza!");
 				break;
+		}
+	}
+
+	public static void storeData(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
+		ObjectOutputStream saida = null;
+
+		try {
+			saida = new ObjectOutputStream(new FileOutputStream("D:\\Documentos\\Programas\\Git_Hub\\Biblioteca\\Biblioteca\\Data\\Data.txt"));
+			saida.writeObject(bib1);
+			saida.writeObject(lista);
+			saida.writeObject(emprestimos);
+			saida.writeObject(historico);
+		} catch (IOException e1) {
+			System.out.println(e1.getMessage());
+		} finally {
+			try {
+				if (saida != null) {
+					saida.close();
+				}
+			} catch (IOException e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		System.out.println("Dados armazenados");
+	}
+
+	public static void readData(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
+		ObjectInputStream entrada = null;
+		Biblioteca bib1Temporario = null;
+		ListaAmigos listaTemporario = null;
+		ListaEmprestimos emprestimosTemporario = null;
+		ListaEmprestimos historicoTemporario = null;
+
+		try {
+			entrada = new ObjectInputStream(new FileInputStream("D:\\Documentos\\Programas\\Git_Hub\\Biblioteca\\Biblioteca\\Data\\Data.txt"));
+			bib1Temporario = (Biblioteca) entrada.readObject();
+			listaTemporario = (ListaAmigos) entrada.readObject();
+			emprestimosTemporario = (ListaEmprestimos) entrada.readObject();
+			historicoTemporario = (ListaEmprestimos) entrada.readObject();
+		} catch (IOException e1) {
+			System.out.println(e1.getMessage());
+		} catch (ClassNotFoundException e2) {
+			System.out.println(e2.getMessage());
+		} finally {
+			try {
+				if (entrada != null) {
+					entrada.close();
+					bib1.setAlItem(bib1Temporario.getAlItem());
+					bib1.setNomeBib(bib1Temporario.getNomeBib());
+					lista.setAlAmigos(listaTemporario.getAlAmigos());
+					emprestimos.setAlEmprestimos(emprestimosTemporario.getAlEmprestimos());
+					historico.setAlEmprestimos(historicoTemporario.getAlEmprestimos());
+					System.out.println("Dados foram carregados");
+				}
+			} catch (IOException e3) {
+				System.out.println(e3.getMessage());
+			}
 		}
 	}
 }

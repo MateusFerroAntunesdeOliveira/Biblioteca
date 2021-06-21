@@ -1,12 +1,13 @@
 package Emprestimo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import Amigo.Amigo;
 import Item.Item;
 
-public class Emprestimo implements Comparable<Emprestimo> {
+public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 
 	private int diaEmprest, mesEmprest, anoEmprest, horaEmprest, minEmprest;
 	private int idAmigo;
