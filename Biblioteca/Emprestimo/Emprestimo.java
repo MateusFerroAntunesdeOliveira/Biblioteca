@@ -9,7 +9,6 @@ import Item.Item;
 
 public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 
-	private int diaEmprest, mesEmprest, anoEmprest, horaEmprest, minEmprest;
 	private int idAmigo;
 	private int idItem;
 	private LocalDateTime dataEmprestimo;
@@ -58,13 +57,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	public Emprestimo(int idAmigo, int idItem, int dia, int mes, int ano, int hora, int min, Item item, Amigo amigo) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
-		this.diaEmprest = dia;
-		this.mesEmprest = mes;
-		this.anoEmprest = ano;
-		this.horaEmprest = hora;
-		this.minEmprest = min;
-		// this.dataEmprestimo = dataEmprestimo;
-		// this.dataDevolucao = LocalDateTime.of(2021, 1, 2, 12, 0);
 		this.item = item;
 		this.amigo = amigo;
 	}
