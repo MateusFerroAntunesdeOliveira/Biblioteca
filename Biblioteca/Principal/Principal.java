@@ -98,7 +98,8 @@ public class Principal {
 					devolverItem(bib1, lista, emprestimos);
 					break;
 				case 5:
-					listarEmprestimosAtuais(bib1, lista, emprestimos);
+					if (emprestimos.getAlEmprestimos().size() == 0) System.out.println("Não há empréstimos ainda!");
+					else listarEmprestimosAtuais(bib1, lista, emprestimos);
 					break;
 				case 6:
 					listarHistorico(historico);
@@ -332,10 +333,6 @@ public class Principal {
 		}
 	}
 
-	//TODO DEVOLVER ITEM
-	// -> SÓ PODE DEVOLVER ITEM SE ELE TIVER EMPRESTADO (MOSTRAR SOMENTE OS EMPRESTADOS)
-	// -> Remover a pessoa do emprestimo quando ela já devolveu o ITEM.
-
 	private static void devolverItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
@@ -347,8 +344,7 @@ public class Principal {
 			System.out.println("\nNinguem está emprestando nenhum Item no momento.");
 		} else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
-				System.out.println("(" + emprestimos.getAlEmprestimos().indexOf(emprestimo) + ") "
-						+ emprestimo.getAmigo().getNomeAmigo());
+				System.out.println("(" + emprestimos.getAlEmprestimos().indexOf(emprestimo) + ") " + emprestimo.getAmigo().getNomeAmigo());
 			}
 		}
 		System.out.println();
@@ -359,7 +355,9 @@ public class Principal {
 		System.out.println("Qual item você quer devolver: ");
 		System.out.println();
 		for (Item item : bib1.getAlItem()) {
-			System.out.println("(" + item.getIdItem() + ") " + bib1.getAlItem().get(item.getIdItem()));
+			if (item.getDispItem().equals(Disponibilidade.EMPRESTADO)) {
+				System.out.println("(" + item.getIdItem() + ") " + bib1.getAlItem().get(item.getIdItem()));
+			}
 		}
 		System.out.print(">> ");
 		escolhaItemDevol = teclado.nextInt();
@@ -393,8 +391,7 @@ public class Principal {
 					System.out.print(">> ");
 					minDevol = teclado.nextInt();
 
-					Emprestimo emprestimo = new Emprestimo(amigoDevol, item.getIdItem(), diaDevol, mesDevol, anoDevol,
-							horaDevol, minDevol, item, lista.getAlAmigos().get(amigoDevol));
+					Emprestimo emprestimo = new Emprestimo(amigoDevol, item.getIdItem(), diaDevol, mesDevol, anoDevol, horaDevol, minDevol, item, lista.getAlAmigos().get(amigoDevol));
 
 					emprestimo.setDataDevolucao2(diaDevol, mesDevol, anoDevol, horaDevol, minDevol);
 					item.devolver();

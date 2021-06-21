@@ -153,7 +153,7 @@ public class Emprestimo implements Comparable<Emprestimo> {
 	public String toString() {
 		if (this.dataDevolucao == null) {
 			return amigo + "\n" + item + "Data do empréstimo: "
-					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nItem não foi devolvido ainda";
+					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\n";
 		} else
 			return amigo + "\n" + item + "Data do empréstimo: "
 					+ dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")) + "\nData da devolucao: "
