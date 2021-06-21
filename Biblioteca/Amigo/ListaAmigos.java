@@ -25,6 +25,7 @@ public class ListaAmigos {
 		this.alAmigos = alAmigos;
 	}
 	
+	// -> AddAmigo
 	public void addAmigo(Amigo novoAmigo) {
 		this.alAmigos.add(novoAmigo);
 	}
@@ -32,6 +33,6 @@ public class ListaAmigos {
 	// -> toString
 	@Override
 	public String toString() {
-		return "ListaAmigos [alAmigos=" + alAmigos + "]";
+		return "Lista de Amigos: " + alAmigos;
 	}
 }

@@ -95,7 +95,7 @@ public class Principal {
 					break;
 				case 7:
 					//TODO Fazer a listagem em ordem crescente
-					if (bib1.getAlItem().size() == 0)
+					if (bib1.size() == 0)
 						System.out.println("Biblioteca está vazia");
 					else {
 						for (Item item : bib1.getAlItem()) {
@@ -139,7 +139,7 @@ public class Principal {
 		switch (escolhaItem) {
 			case 1:
 				Livro obj1;
-				obj1 = new Livro(bib1.getAlItem().size(), "", Disponibilidade.DISPONIVEL);
+				obj1 = new Livro(bib1.size(), "", Disponibilidade.DISPONIVEL);
 
 				System.out.println();
 				System.out.println("Qual o título do item: ");
@@ -169,7 +169,7 @@ public class Principal {
 				break;
 			case 2:
 				DVD obj2;
-				obj2 = new DVD(bib1.getAlItem().size(), "", Disponibilidade.DISPONIVEL);
+				obj2 = new DVD(bib1.size(), "", Disponibilidade.DISPONIVEL);
 
 				System.out.println();
 				System.out.println("Qual o título do item: ");
@@ -199,7 +199,7 @@ public class Principal {
 				break;
 			case 3:
 				FitaK7 obj3;
-				obj3 = new FitaK7(bib1.getAlItem().size(), "", Disponibilidade.DISPONIVEL);
+				obj3 = new FitaK7(bib1.size(), "", Disponibilidade.DISPONIVEL);
 
 				System.out.println();
 				System.out.println("Qual o título do item: ");
@@ -446,7 +446,7 @@ public class Principal {
 
 		switch (alterarEstado) {
 			case 1:
-				for (int i = 0; i < bib1.getAlItem().size(); i++) {
+				for (int i = 0; i < bib1.size(); i++) {
 					if (bib1.getAlItem().get(itemAlterarEstado).getDispItem() != Disponibilidade.EMPRESTADO) {
 						bib1.getAlItem().get(itemAlterarEstado).consultaLocal();
 					}
@@ -455,13 +455,13 @@ public class Principal {
 				else System.out.println("Não consigo acessar o livro para a consulta, ele pode estar emprestado...");
 				break;
 			case 2:
-				for (int i = 0; i < bib1.getAlItem().size(); i++) {
+				for (int i = 0; i < bib1.size(); i++) {
 					bib1.getAlItem().get(itemAlterarEstado).Danificado();
 				}
 				System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
 				break;
 			case 3:
-				for (int i = 0; i < bib1.getAlItem().size(); i++) {
+				for (int i = 0; i < bib1.size(); i++) {
 					bib1.getAlItem().get(itemAlterarEstado).Extraviado();
 				}
 				System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");

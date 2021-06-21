@@ -47,15 +47,16 @@ public class Biblioteca implements Iterable<Item> {
 		this.alItem = alItem;
 	}
 
-	// -> toString padrão
-	@Override
-	public String toString() {
-		return "Nome da Biblioteca = " + nomeBib + " - " + "alItem = " + alItem;
-	}
-
 	// -> Iterator
 	@Override
 	public Iterator<Item> iterator() {
 		return this.alItem.iterator();
 	}
+	
+	// -> toString padrão
+	@Override
+	public String toString() {
+		return "Nome da Biblioteca = " + nomeBib + " - " + "com os itens: " + alItem;
+	}
+
 }
