@@ -24,9 +24,18 @@ import Amigo.ListaAmigos;
 import Emprestimo.ListaEmprestimos;
 import Emprestimo.Emprestimo;
 
+/** 
+ * @author Joao Gabriel Klein Lopes
+ * @author Mateus Ferro Antunes de Oliveira
+ * @author Milena Heloisa de Amorim Silverio
+ * 
+ * @version 1.01+1
+ */
+
 public class Principal {
 
 	public static void main(String[] args) {
+
 		// -> Variables
 		int escolhaMenu;
 		Scanner teclado = new Scanner(System.in);
@@ -133,12 +142,18 @@ public class Principal {
 		teclado.close();
 	}
 
+	/**
+	 * Funcao cadastrarItem que recebe Biblioteca bib1
+	 * @param bib1
+	 */
 	private static void cadastrarItem(Biblioteca bib1) {
+
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		int escolhaItem, totPagLivro, numMusicaCD, numMusicaFita;
 		String autorLivro, autorDisco, autorFita, tituloItem;
 
+		// -> Menu Cadastrar Item
 		System.out.println();
 		System.out.println("=-=-=-=-=-= Cadatrar Item =-=-=-=-=-= ");
 		System.out.println("Qual o tipo de item que deseja cadastrar: ");
@@ -247,29 +262,43 @@ public class Principal {
 			}
 	}
 
+	/**
+	 * Funcao cadastrarAmigo que recebe ListaAmigos lista
+	 * @param lista
+	 */
 	private static void cadastrarAmigo(ListaAmigos lista) {
+		
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		String nomeAmigo = "";
 		Amigo amigo = new Amigo(lista.getAlAmigos().size(), nomeAmigo);
 
+		// -> Menu cadastrar Amigo
 		System.out.println();
-		System.out.println("Qual o nome do seu abiguinho: ");
+		System.out.println("Qual o nome do seu amigo: ");
 		System.out.print(">> ");
 		nomeAmigo = teclado.nextLine();
 		System.out.println();
 		amigo.setNomeAmigo(nomeAmigo);
-
 		lista.addAmigo(amigo);
 		System.out.println("Amigo " + nomeAmigo + " cadastrado com sucesso!");
 	}
 
+	/**
+	 * Funcao emprestarItem que recebe Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico
+	 * @param bib1
+	 * @param lista
+	 * @param emprestimos
+	 * @param historico
+	 */
 	private static void emprestarItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
+		
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		int amigoEmprest, escolhaItemEmprest, diaEmprestimo, mesEmprestimo, anoEmprestimo, horaEmprestimo, minEmprestimo;
 
-		System.out.println("Para quem você esta emprestando: ");
+		// -> Menu emprestarItem
+		System.out.println("Para quem voce esta emprestando: ");
 		System.out.println();
 		for (int i = 0; i < lista.getAlAmigos().size(); i++) {
 			System.out.println("(" + i + ") " + lista.getAlAmigos().get(i));
@@ -278,7 +307,7 @@ public class Principal {
 		amigoEmprest = teclado.nextInt();
 		System.out.println();
 
-		System.out.println("Qual item você quer emprestar: ");
+		System.out.println("Qual item voce quer emprestar: ");
 		System.out.println();
 		for (Item item : bib1.getAlItem()) {
 			if (item.getDispItem().equals(Disponibilidade.DISPONIVEL)) {
@@ -317,10 +346,7 @@ public class Principal {
 					System.out.print(">> ");
 					minEmprestimo = teclado.nextInt();
 
-					Emprestimo emprestimo = new Emprestimo(
-							amigoEmprest, item.getIdItem(), LocalDateTime.of(anoEmprestimo, mesEmprestimo,
-									diaEmprestimo, horaEmprestimo, minEmprestimo),
-							item, lista.getAlAmigos().get(amigoEmprest));
+					Emprestimo emprestimo = new Emprestimo(amigoEmprest, item.getIdItem(), LocalDateTime.of(anoEmprestimo, mesEmprestimo, diaEmprestimo, horaEmprestimo, minEmprestimo), item, lista.getAlAmigos().get(amigoEmprest));
 
 					emprestimos.addEmprestimo(emprestimo);
 					item.emprestar();
@@ -335,7 +361,14 @@ public class Principal {
 		}
 	}
 
+	/**
+	 * Funcao devolverItem que recebe Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos
+	 * @param bib1
+	 * @param lista
+	 * @param emprestimos
+	 */
 	private static void devolverItem(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
+
 		// -> Variables
 		ArrayList<Amigo> amigos = new ArrayList<Amigo>();
 		Scanner teclado = new Scanner(System.in);
@@ -357,7 +390,7 @@ public class Principal {
 		amigoDevol = amigos.get(teclado.nextInt());  
 		System.out.println();
 
-		System.out.println("Qual item você quer devolver: ");
+		System.out.println("Qual item voce quer devolver: ");
 		System.out.println();
 		for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
 			if (emprestimo.getAmigo().getIdAmigo() == amigoDevol.getIdAmigo() && emprestimo.getItem().getDispItem().equals(Disponibilidade.EMPRESTADO)) {
@@ -409,7 +442,14 @@ public class Principal {
 		}
 	}
 
+	/**
+	 * Funcao listarEmprestimosAtuais que recebe Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos
+	 * @param bib1
+	 * @param lista
+	 * @param emprestimos
+	 */
 	private static void listarEmprestimosAtuais(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
+		
 		if (emprestimos.getAlEmprestimos().size() == 0) System.out.println("Nao ha emprestimos ainda!");
 		else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
@@ -420,7 +460,12 @@ public class Principal {
 		}
 	}
 
+	/**
+	 * Funcao listarHistorico que recebe ListaEmprestimos historico
+	 * @param historico
+	 */
 	private static void listarHistorico(ListaEmprestimos historico) {
+
 		if (historico.getAlEmprestimos().size() == 0)
 			System.out.println("Nao houveram emprestimos");
 		else {
@@ -430,7 +475,12 @@ public class Principal {
 		}
 	}
 
+	/**
+	 * Funcao listarBiblioteca que recebe Biblioteca bib1
+	 * @param bib1
+	 */
 	private static void listarBiblioteca(Biblioteca bib1) {
+		
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		int ordenarBib;
@@ -475,12 +525,18 @@ public class Principal {
 		}
 	}
 
+	/**
+	 * Funcao alterarEstado que recebe Biblioteca bib1
+	 * @param bib1
+	 */
 	private static void alterarEstado(Biblioteca bib1) {
+		
 		// -> Variables
 		Scanner teclado = new Scanner(System.in);
 		int itemAlterarEstado, alterarEstado;
 
-		System.out.println("\nQual item você quer alterar o estado: ");
+		// -> Menu alterarEstado
+		System.out.println("\nQual item voce quer alterar o estado: ");
 		System.out.println();
 		for (Item item : bib1.getAlItem()) {
 			System.out.println("(" + item.getIdItem() + ") " + bib1.getAlItem().get(item.getIdItem()));
@@ -488,7 +544,7 @@ public class Principal {
 		System.out.print(">> ");
 		itemAlterarEstado = teclado.nextInt();
 
-		System.out.println("Para qual estado você quer alterar: ");
+		System.out.println("Para qual estado voce quer alterar: ");
 		System.out.println("(1) - CONSULTALOCAL");
 		System.out.println("(2) - DANIFICADO");
 		System.out.println("(3) - EXTRAVIADO");
@@ -503,20 +559,20 @@ public class Principal {
 						bib1.getAlItem().get(itemAlterarEstado).consultaLocal();
 					}
 				}
-				if (bib1.getAlItem().get(itemAlterarEstado).getDispItem() != Disponibilidade.EMPRESTADO) System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
+				if (bib1.getAlItem().get(itemAlterarEstado).getDispItem() != Disponibilidade.EMPRESTADO) System.out.println("O item que voce escolheu mudou de estado, confira na listagem da biblioteca!");
 				else System.out.println("Nao consigo acessar o livro para a consulta, ele pode estar emprestado...");
 				break;
 			case 2:
 				for (int i = 0; i < bib1.size(); i++) {
 					bib1.getAlItem().get(itemAlterarEstado).Danificado();
 				}
-				System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
+				System.out.println("O item que voce escolheu mudou de estado, confira na listagem da biblioteca!");
 				break;
 			case 3:
 				for (int i = 0; i < bib1.size(); i++) {
 					bib1.getAlItem().get(itemAlterarEstado).Extraviado();
 				}
-				System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
+				System.out.println("O item que voce escolheu mudou de estado, confira na listagem da biblioteca!");
 				break;
 			default:
 				System.out.println("Digite um valor entre 1 e 3, por gentileza!");
@@ -524,7 +580,16 @@ public class Principal {
 		}
 	}
 
+	/**
+	 * Funcao storeData que recebe Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico
+	 * @param bib1
+	 * @param lista
+	 * @param emprestimos
+	 * @param historico
+	 */
 	public static void storeData(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
+		
+		// -> Variables
 		ObjectOutputStream saida = null;
 
 		try {
@@ -547,7 +612,16 @@ public class Principal {
 		System.out.println("Dados armazenados");
 	}
 
+	/**
+	 * Funcao readData que recebe Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico
+	 * @param bib1
+	 * @param lista
+	 * @param emprestimos
+	 * @param historico
+	 */
 	public static void readData(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos, ListaEmprestimos historico) {
+		
+		// -> Variables
 		ObjectInputStream entrada = null;
 		Biblioteca bib1Temporario = null;
 		ListaAmigos listaTemporario = null;

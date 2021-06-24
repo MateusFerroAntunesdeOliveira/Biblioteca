@@ -27,7 +27,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 
 	// -> Constructors
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param idItem Id do Item
 	 */
@@ -39,12 +38,10 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param idItem Id do Item
 	 * @param dataEmprestimo Data do Emprestimo
 	 */
-
 	public Emprestimo(int idAmigo, int idItem, LocalDateTime dataEmprestimo) {
 		this.idAmigo = idAmigo;
 		this.idItem = idItem;
@@ -52,7 +49,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param dataDevolucao Data da Devolucao
 	 */
@@ -63,7 +59,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param idItem Id do Item
 	 * @param item Item
@@ -79,7 +74,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param idItem Id do Item
 	 * @param dataEmprestimo Data do Emprestimo
@@ -96,7 +90,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param idItem Id do Item
 	 * @param dia Dia
@@ -115,7 +108,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param idItem Id do Item
 	 * @param dataEmprestimo Data do Emprestimo
@@ -129,7 +121,6 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * 
 	 * @param idAmigo Id do Amigo
 	 * @param idItem Id do Item
 	 * @param dataEmprestimo Data do Emprestimo
@@ -271,7 +262,7 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	// -> CompareTo
 	/**
 	 * Devolve a Data de Emprestimo para os emprestados
-	 * @return compareTO
+	 * @return compareTo
 	 */
 	@Override
 	public int compareTo(Emprestimo dataEmprest) {
