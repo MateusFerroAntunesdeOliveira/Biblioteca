@@ -6,6 +6,8 @@
 
 - Youtube Video: https://youtu.be/gm9JSa_BrRU;
 
+- Self-assessment in the folder "_AutoAvaliação"
+
 #### @author MateusFerroAntunesdeOliveira @author ijoaog @author mhsilverio
 
-- Work Done - 21/06/2021.
+- Work Done - 24/06/2021.
