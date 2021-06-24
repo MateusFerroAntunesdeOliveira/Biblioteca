@@ -18,7 +18,7 @@ public class ListaAmigos implements Serializable {
 
 	// -> Constructors
 	/**
-	 * @param ListaAmigos criação de um ArrayList vazio
+	 * @param ListaAmigos criação de um ArrayList Amigo vazio
 	 */
 	public ListaAmigos() {
 		this.alAmigos = new ArrayList<Amigo>();
