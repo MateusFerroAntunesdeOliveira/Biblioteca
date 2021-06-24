@@ -34,6 +34,10 @@ import Emprestimo.Emprestimo;
 
 public class Principal {
 
+	/**
+	 * Funcao Principal
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		// -> Variables
@@ -495,7 +499,7 @@ public class Principal {
 			System.out.println("A Alteracao nao podera ser desfeita! So pode ser realizada uma vez!");
 			System.out.println();
 			System.out.println("(1) SIM ");
-			System.out.println("(2) NaO ");
+			System.out.println("(2) NAO ");
 			System.out.println();
 			System.out.println("(3) Voltar pro menu");
 			System.out.println();

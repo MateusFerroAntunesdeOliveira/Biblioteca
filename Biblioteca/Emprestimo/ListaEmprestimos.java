@@ -3,6 +3,14 @@ package Emprestimo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/** 
+ * @author Joao Gabriel Klein Lopes
+ * @author Mateus Ferro Antunes de Oliveira
+ * @author Milena Heloisa de Amorim Silverio
+ * 
+ * @version 1.01+1
+ */
+
 public class ListaEmprestimos implements Serializable {
 
 	private ArrayList<Emprestimo> alEmprestimos;
