@@ -9,7 +9,7 @@ public class ListaEmprestimos implements Serializable {
 
 	// -> Constructors
 	/**
-	 * @param ListaEmprestimos criaçao de um ArrayList Emprestimo vazio
+	 * @param ListaEmprestimos criacao de um ArrayList Emprestimo vazio
 	 */
 	public ListaEmprestimos() {
 		this.alEmprestimos = new ArrayList<Emprestimo>();

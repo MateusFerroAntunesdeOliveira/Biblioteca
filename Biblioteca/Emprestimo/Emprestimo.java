@@ -8,9 +8,9 @@ import Amigo.Amigo;
 import Item.Item;
 
 /** 
- * @author João Gabriel Klein Lopes
+ * @author Joao Gabriel Klein Lopes
  * @author Mateus Ferro Antunes de Oliveira
- * @author Milena Heloisa de Amorim Silvério
+ * @author Milena Heloisa de Amorim Silverio
  * 
  * @version 1.01+1
  */
@@ -233,7 +233,7 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * Seta uma Data de Devolução
+	 * Seta uma Data de Devolucao
 	 * @param dataDevolucao
 	 */
 	public void setDataDevolucao(LocalDateTime dataDevolucao) {
@@ -241,7 +241,7 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 	}
 
 	/**
-	 * Seta uma segunda Data de Devolução
+	 * Seta uma segunda Data de Devolucao
 	 * @param dia
 	 * @param mes
 	 * @param ano
@@ -280,7 +280,7 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 
 	// -> toString
 	/**
-	 * Se a Data de Devolução for nula, Devolve uma String para apenas a Data Emprestimo, se não, Devolve uma String com Data Devolução e Data Emprestimo
+	 * Se a Data de Devolucao for nula, Devolve uma String para apenas a Data Emprestimo, se nao, Devolve uma String com Data Devolucao e Data Emprestimo
 	 * @retun toString
 	 */
 	@Override

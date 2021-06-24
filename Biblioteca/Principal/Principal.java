@@ -37,7 +37,7 @@ public class Principal {
 		// -> dummy data Item
 		// final Item livro1 = new Livro(0, "50 Ideias de Fisica Quantica", Disponibilidade.DISPONIVEL, "Joanne Baker", 211);
 		// final Item livro2 = new Livro(1, "O Senhor dos Aneis", Disponibilidade.DISPONIVEL, "J.R.R. Tolkien", 1201);
-		// final Item livro3 = new Livro(2, "A Dança dos Dragoes", Disponibilidade.DISPONIVEL, "George R.R. Martin", 864);
+		// final Item livro3 = new Livro(2, "A Danca dos Dragoes", Disponibilidade.DISPONIVEL, "George R.R. Martin", 864);
 		// final Item fita1 = new FitaK7(3, "Fita do Joaozinho", Disponibilidade.DISPONIVEL, "Joao", 5);
 		// final Item fita2 = new FitaK7(4, "FitaK7 das boas", Disponibilidade.DISPONIVEL, "Jose da Fita", 45);
 		// final Item CD1 = new CD(5, "Xuxa para os baixinhos", Disponibilidade.DISPONIVEL, "Xuxa", 10);
@@ -373,27 +373,27 @@ public class Principal {
 			if (item.getIdItem() == escolhaItemDevol) {
 				if (item.getDispItem() == Disponibilidade.EMPRESTADO) {
 					System.out.println();
-					System.out.println("Qual o dia da devoluçao: ");
+					System.out.println("Qual o dia da devolucao: ");
 					System.out.print(">> ");
 					diaDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o mes da devoluçao: ");
+					System.out.println("Qual o mes da devolucao: ");
 					System.out.print(">> ");
 					mesDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o ano da devoluçao: ");
+					System.out.println("Qual o ano da devolucao: ");
 					System.out.print(">> ");
 					anoDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual a hora da devoluçao: ");
+					System.out.println("Qual a hora da devolucao: ");
 					System.out.print(">> ");
 					horaDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o minuto da devoluçao: ");
+					System.out.println("Qual o minuto da devolucao: ");
 					System.out.print(">> ");
 					minDevol = teclado.nextInt();
 
@@ -441,8 +441,8 @@ public class Principal {
 			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 			System.out.println("Deseja ordenar em ordem crescente a biblioteca (por titulo)? ");
 			System.out.println();
-			System.out.println("Caso digite (1), nao sera possivel retornar para a ordenaçao anterior");
-			System.out.println("A Alteraçao nao podera ser desfeita! So pode ser realizada uma vez!");
+			System.out.println("Caso digite (1), nao sera possivel retornar para a ordenacao anterior");
+			System.out.println("A Alteracao nao podera ser desfeita! So pode ser realizada uma vez!");
 			System.out.println();
 			System.out.println("(1) SIM ");
 			System.out.println("(2) NaO ");
@@ -469,7 +469,7 @@ public class Principal {
 				case 3:
 					break;
 				default:
-					System.out.println("Por gentileza, digite uma opçao valida!");
+					System.out.println("Por gentileza, digite uma opcao valida!");
 					break;
 			}
 		}
