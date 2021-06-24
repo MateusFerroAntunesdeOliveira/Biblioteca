@@ -1,7 +1,3 @@
-// João Gabriel Klein Lopes
-// Mateus Ferro Antunes de Oliveira
-// Milena Heloisa de Amorim Silvério
-
 package Principal;
 
 import java.io.ObjectOutputStream;
