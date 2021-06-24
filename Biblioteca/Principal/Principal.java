@@ -37,9 +37,9 @@ public class Principal {
 		// -> dummy data Item
 		// final Item livro1 = new Livro(0, "50 Ideias de Fisica Quantica", Disponibilidade.DISPONIVEL, "Joanne Baker", 211);
 		// final Item livro2 = new Livro(1, "O Senhor dos Aneis", Disponibilidade.DISPONIVEL, "J.R.R. Tolkien", 1201);
-		// final Item livro3 = new Livro(2, "A Dança dos Dragões", Disponibilidade.DISPONIVEL, "George R.R. Martin", 864);
-		// final Item fita1 = new FitaK7(3, "Fita do Joãozinho", Disponibilidade.DISPONIVEL, "João", 5);
-		// final Item fita2 = new FitaK7(4, "FitaK7 das boas", Disponibilidade.DISPONIVEL, "José da Fita", 45);
+		// final Item livro3 = new Livro(2, "A Dança dos Dragoes", Disponibilidade.DISPONIVEL, "George R.R. Martin", 864);
+		// final Item fita1 = new FitaK7(3, "Fita do Joaozinho", Disponibilidade.DISPONIVEL, "Joao", 5);
+		// final Item fita2 = new FitaK7(4, "FitaK7 das boas", Disponibilidade.DISPONIVEL, "Jose da Fita", 45);
 		// final Item CD1 = new CD(5, "Xuxa para os baixinhos", Disponibilidade.DISPONIVEL, "Xuxa", 10);
 		// final Item CD2 = new CD(6, "Queen", Disponibilidade.DISPONIVEL, "Queen", 12);
 
@@ -80,8 +80,8 @@ public class Principal {
 			System.out.println(" 02 - Cadastrar Amigo");
 			System.out.println(" 03 - Emprestar Item");
 			System.out.println(" 04 - Devolver Item");
-			System.out.println(" 05 - Listar empréstimos atuais");
-			System.out.println(" 06 - Listar histórico de empréstimos");
+			System.out.println(" 05 - Listar emprestimos atuais");
+			System.out.println(" 06 - Listar historico de emprestimos");
 			System.out.println(" 07 - Listar biblioteca");
 			System.out.println(" 08 - Alterar estado manualmente");
 			System.out.println(" 09 - Gravar dados");
@@ -125,7 +125,7 @@ public class Principal {
 				case 0:
 					System.exit(0);
 				default:
-					System.out.println("Escolha inválida, tente novamente!");
+					System.out.println("Escolha invalida, tente novamente!");
 					break;
 			}
 		} while (escolhaMenu != 0);
@@ -155,7 +155,7 @@ public class Principal {
 				obj1 = new Livro(bib1.size(), "", Disponibilidade.DISPONIVEL);
 
 				System.out.println();
-				System.out.println("Qual o título do item: ");
+				System.out.println("Qual o titulo do item: ");
 				System.out.print(">> ");
 				teclado.nextLine();
 				tituloItem = teclado.nextLine();
@@ -168,7 +168,7 @@ public class Principal {
 				obj1.setAutorLivro(autorLivro);
 
 				System.out.println();
-				System.out.println("Quantas páginas possui o livro: ");
+				System.out.println("Quantas paginas possui o livro: ");
 				System.out.print(">> ");
 				totPagLivro = teclado.nextInt();
 				obj1.setTotPagLivro(totPagLivro);
@@ -177,7 +177,7 @@ public class Principal {
 				System.out.println();
 				System.out.println("Livro adicionado com sucesso!");
 				System.out.println("Titulo do livro: " + obj1.getTituloItem() + "\n" + "Autor do livro: "
-						+ obj1.getAutorLivro() + "\n" + "Numero de páginas: " + obj1.getTotPagLivro());
+						+ obj1.getAutorLivro() + "\n" + "Numero de paginas: " + obj1.getTotPagLivro());
 
 				break;
 			case 2:
@@ -185,7 +185,7 @@ public class Principal {
 				obj2 = new CD(bib1.size(), "", Disponibilidade.DISPONIVEL);
 
 				System.out.println();
-				System.out.println("Qual o título do item: ");
+				System.out.println("Qual o titulo do item: ");
 				System.out.print(">> ");
 				teclado.nextLine();
 				tituloItem = teclado.nextLine();
@@ -207,7 +207,7 @@ public class Principal {
 				System.out.println();
 				System.out.println("CD adicionado com sucesso!");
 				System.out.println("Titulo do CD: " + obj2.getTituloItem() + "\n" + "Autor do CD: "
-						+ obj2.getAutorDisco() + "\n" + "Numero de músicas: " + obj2.getNumMusicaCD());
+						+ obj2.getAutorDisco() + "\n" + "Numero de musicas: " + obj2.getNumMusicaCD());
 
 				break;
 			case 3:
@@ -215,7 +215,7 @@ public class Principal {
 				obj3 = new FitaK7(bib1.size(), "", Disponibilidade.DISPONIVEL);
 
 				System.out.println();
-				System.out.println("Qual o título do item: ");
+				System.out.println("Qual o titulo do item: ");
 				System.out.print(">> ");
 				teclado.nextLine();
 				tituloItem = teclado.nextLine();
@@ -237,7 +237,7 @@ public class Principal {
 				System.out.println();
 				System.out.println("FitaK7 adicionada com sucesso!");
 				System.out.println("Titulo da fita: " + obj3.getTituloItem() + "\n" + "Autor da fita: "
-						+ obj3.getAutorFita() + "\n" + "Numero de músicas: " + obj3.getNumMusicaFita());
+						+ obj3.getAutorFita() + "\n" + "Numero de musicas: " + obj3.getNumMusicaFita());
 
 				break;
 			default:
@@ -269,7 +269,7 @@ public class Principal {
 		Scanner teclado = new Scanner(System.in);
 		int amigoEmprest, escolhaItemEmprest, diaEmprestimo, mesEmprestimo, anoEmprestimo, horaEmprestimo, minEmprestimo;
 
-		System.out.println("Para quem você está emprestando: ");
+		System.out.println("Para quem você esta emprestando: ");
 		System.out.println();
 		for (int i = 0; i < lista.getAlAmigos().size(); i++) {
 			System.out.println("(" + i + ") " + lista.getAlAmigos().get(i));
@@ -293,27 +293,27 @@ public class Principal {
 			if (item.getIdItem() == escolhaItemEmprest) {
 				if (item.getDispItem() == Disponibilidade.DISPONIVEL) {
 					System.out.println();
-					System.out.println("Qual o dia do empréstimo: ");
+					System.out.println("Qual o dia do emprestimo: ");
 					System.out.print(">> ");
 					diaEmprestimo = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o mes do empréstimo: ");
+					System.out.println("Qual o mes do emprestimo: ");
 					System.out.print(">> ");
 					mesEmprestimo = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o ano do empréstimo: ");
+					System.out.println("Qual o ano do emprestimo: ");
 					System.out.print(">> ");
 					anoEmprestimo = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual a hora do empréstimo: ");
+					System.out.println("Qual a hora do emprestimo: ");
 					System.out.print(">> ");
 					horaEmprestimo = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o minuto do empréstimo: ");
+					System.out.println("Qual o minuto do emprestimo: ");
 					System.out.print(">> ");
 					minEmprestimo = teclado.nextInt();
 
@@ -330,7 +330,7 @@ public class Principal {
 					System.out.println();
 					System.out.println(emprestimo);
 				} else
-					System.out.println("O item está ocupado no momento, tente novamente mais tarde!");
+					System.out.println("O item esta ocupado no momento, tente novamente mais tarde!");
 			}
 		}
 	}
@@ -342,10 +342,10 @@ public class Principal {
 		Amigo amigoDevol; 
 		int escolhaItemDevol, diaDevol, mesDevol, anoDevol, horaDevol, minDevol;
 
-		System.out.println("Quem está devolvendo o item: ");
+		System.out.println("Quem esta devolvendo o item: ");
 		System.out.println();
 		if (emprestimos.getAlEmprestimos().size() == 0) {
-			System.out.println("\nNinguem está emprestando nenhum Item no momento.");
+			System.out.println("\nNinguem esta emprestando nenhum Item no momento.");
 		} else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
 				System.out.println("(" + emprestimos.getAlEmprestimos().indexOf(emprestimo) + ") " + emprestimo.getAmigo().getNomeAmigo());
@@ -373,27 +373,27 @@ public class Principal {
 			if (item.getIdItem() == escolhaItemDevol) {
 				if (item.getDispItem() == Disponibilidade.EMPRESTADO) {
 					System.out.println();
-					System.out.println("Qual o dia da devolução: ");
+					System.out.println("Qual o dia da devoluçao: ");
 					System.out.print(">> ");
 					diaDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o mes da devolução: ");
+					System.out.println("Qual o mes da devoluçao: ");
 					System.out.print(">> ");
 					mesDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o ano da devolução: ");
+					System.out.println("Qual o ano da devoluçao: ");
 					System.out.print(">> ");
 					anoDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual a hora da devolução: ");
+					System.out.println("Qual a hora da devoluçao: ");
 					System.out.print(">> ");
 					horaDevol = teclado.nextInt();
 
 					System.out.println();
-					System.out.println("Qual o minuto da devolução: ");
+					System.out.println("Qual o minuto da devoluçao: ");
 					System.out.print(">> ");
 					minDevol = teclado.nextInt();
 
@@ -404,13 +404,13 @@ public class Principal {
 					System.out.println();
 					System.out.println("Item devolvido com sucesso!");
 				} else
-					System.out.println("O Item está ocupado no momento, tente novamente mais tarde!");
+					System.out.println("O Item esta ocupado no momento, tente novamente mais tarde!");
 			}
 		}
 	}
 
 	private static void listarEmprestimosAtuais(Biblioteca bib1, ListaAmigos lista, ListaEmprestimos emprestimos) {
-		if (emprestimos.getAlEmprestimos().size() == 0) System.out.println("Não há empréstimos ainda!");
+		if (emprestimos.getAlEmprestimos().size() == 0) System.out.println("Nao ha emprestimos ainda!");
 		else {
 			for (Emprestimo emprestimo : emprestimos.getAlEmprestimos()) {
 					if (emprestimo.getItem().getDispItem() == Disponibilidade.EMPRESTADO) {
@@ -422,7 +422,7 @@ public class Principal {
 
 	private static void listarHistorico(ListaEmprestimos historico) {
 		if (historico.getAlEmprestimos().size() == 0)
-			System.out.println("Não houveram empréstimos");
+			System.out.println("Nao houveram emprestimos");
 		else {
 			for (Emprestimo emprestimo : historico.getAlEmprestimos()) {
 				System.out.println(emprestimo);
@@ -436,16 +436,16 @@ public class Principal {
 		int ordenarBib;
 
 		if (bib1.size() == 0)
-			System.out.println("Biblioteca está vazia no momento!");
+			System.out.println("Biblioteca esta vazia no momento!");
 		else {
 			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("Deseja ordenar em ordem crescente a biblioteca (por título)? ");
+			System.out.println("Deseja ordenar em ordem crescente a biblioteca (por titulo)? ");
 			System.out.println();
-			System.out.println("Caso digite (1), não será possível retornar para a ordenação anterior");
-			System.out.println("A Alteração não poderá ser desfeita! Só pode ser realizada uma vez!");
+			System.out.println("Caso digite (1), nao sera possivel retornar para a ordenaçao anterior");
+			System.out.println("A Alteraçao nao podera ser desfeita! So pode ser realizada uma vez!");
 			System.out.println();
 			System.out.println("(1) SIM ");
-			System.out.println("(2) NÃO ");
+			System.out.println("(2) NaO ");
 			System.out.println();
 			System.out.println("(3) Voltar pro menu");
 			System.out.println();
@@ -469,7 +469,7 @@ public class Principal {
 				case 3:
 					break;
 				default:
-					System.out.println("Por gentileza, digite uma opção válida!");
+					System.out.println("Por gentileza, digite uma opçao valida!");
 					break;
 			}
 		}
@@ -504,7 +504,7 @@ public class Principal {
 					}
 				}
 				if (bib1.getAlItem().get(itemAlterarEstado).getDispItem() != Disponibilidade.EMPRESTADO) System.out.println("O item que você escolheu mudou de estado, confira na listagem da biblioteca!");
-				else System.out.println("Não consigo acessar o livro para a consulta, ele pode estar emprestado...");
+				else System.out.println("Nao consigo acessar o livro para a consulta, ele pode estar emprestado...");
 				break;
 			case 2:
 				for (int i = 0; i < bib1.size(); i++) {

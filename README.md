@@ -1,6 +1,6 @@
 ## Library Project
 
-#### Library project using JAVA - subject of Object Oriented Programming of the Pontifical Catholic University of Paraná - 'PUCPR' 
+#### Library project using JAVA - subject of Object Oriented Programming of the Pontifical Catholic University of Parana - 'PUCPR' 
 
 - Astah UML file related to the relationship entity of the Library;
 

@@ -3,14 +3,14 @@ package Item;
 import java.io.Serializable;
 
 /** 
- * @author João Gabriel Klein Lopes
+ * @author Joao Gabriel Klein Lopes
  * @author Mateus Ferro Antunes de Oliveira
- * @author Milena Heloisa de Amorim Silvério
+ * @author Milena Heloisa de Amorim Silverio
  * 
  * @version 1.01+1
  */
 
-// -> Classe abstrata que não pode mais ser instanciada
+// -> Classe abstrata que nao pode mais ser instanciada
 public abstract class Item implements Comparable<Item>, Serializable{
 
 	// -> Variables
@@ -65,7 +65,7 @@ public abstract class Item implements Comparable<Item>, Serializable{
 	}
 	
 	/**
-	 * Devolve uma String que identifica o Item através do Título
+	 * Devolve uma String que identifica o Item atraves do Titulo
 	 * @return Titulo do Item
 	 */
 	public String getTituloItem() {
@@ -152,7 +152,7 @@ public abstract class Item implements Comparable<Item>, Serializable{
 
 	// -> CompareTo
 	/**
-	 * Devolve os títulos dos itens ordenados alfabeticamente
+	 * Devolve os titulos dos itens ordenados alfabeticamente
 	 * @return compareTo
 	 */
 	public int compareTo(Item compItem) {

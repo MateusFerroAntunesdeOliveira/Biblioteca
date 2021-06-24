@@ -3,9 +3,9 @@ package Amigo;
 import java.io.Serializable;
 
 /** 
- * @author João Gabriel Klein Lopes
+ * @author Joao Gabriel Klein Lopes
  * @author Mateus Ferro Antunes de Oliveira
- * @author Milena Heloisa de Amorim Silvério
+ * @author Milena Heloisa de Amorim Silverio
  * 
  * @version 1.01+1
  */

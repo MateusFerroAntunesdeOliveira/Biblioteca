@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /** 
- * @author João Gabriel Klein Lopes
+ * @author Joao Gabriel Klein Lopes
  * @author Mateus Ferro Antunes de Oliveira
- * @author Milena Heloisa de Amorim Silvério
+ * @author Milena Heloisa de Amorim Silverio
  * 
  * @version 1.01+1
  */
@@ -18,7 +18,7 @@ public class ListaAmigos implements Serializable {
 
 	// -> Constructors
 	/**
-	 * @param ListaAmigos criação de um ArrayList Amigo vazio
+	 * @param ListaAmigos criaçao de um ArrayList Amigo vazio
 	 */
 	public ListaAmigos() {
 		this.alAmigos = new ArrayList<Amigo>();

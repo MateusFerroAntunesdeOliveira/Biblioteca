@@ -9,14 +9,14 @@ public class ListaEmprestimos implements Serializable {
 
 	// -> Constructors
 	/**
-	 * @param ListaEmprestimos criação de um ArrayList Emprestimo vazio
+	 * @param ListaEmprestimos criaçao de um ArrayList Emprestimo vazio
 	 */
 	public ListaEmprestimos() {
 		this.alEmprestimos = new ArrayList<Emprestimo>();
 	}
 
 	/**
-	 * @param alEmprestimos lista em empréstimos
+	 * @param alEmprestimos lista em emprestimos
 	 */
 	public ListaEmprestimos(ArrayList<Emprestimo> alEmprestimos) {
 		this.alEmprestimos = alEmprestimos;
@@ -42,7 +42,7 @@ public class ListaEmprestimos implements Serializable {
 
 	// -> AddEmprestimo
 	/** 
-	 * Método que adiciona Emprestimo
+	 * Metodo que adiciona Emprestimo
 	 * @param novoEmprestimo
 	 */
 	public void addEmprestimo(Emprestimo novoEmprestimo) {
